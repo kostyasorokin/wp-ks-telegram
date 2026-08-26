@@ -1,0 +1,26 @@
+{
+  "name": "ks-telegram",
+  "version": "1.0.0",
+  "private": true,
+  "license": "GPL-3.0-or-later",
+  "description": "Modern Telegram integration toolkit for WordPress and WooCommerce.",
+  "scripts": {
+    "build": "npm run build:scss && npm run build:js && npm run i18n",
+    "build:assets": "npm run build:scss && npm run build:js",
+    "build:scss": "sass resources/scss:assets/css --no-source-map --style=compressed",
+    "build:js": "mkdir -p assets/js && esbuild resources/js/admin.js --bundle --minify --format=iife --target=es2018 --outfile=assets/js/admin.js",
+    "i18n:pot": "wp i18n make-pot . languages/ks-telegram.pot --exclude=vendor,node_modules --domain=ks-telegram",
+    "i18n:merge": "msgmerge --update --backup=off languages/ks-telegram-ru_RU.po languages/ks-telegram.pot && msgmerge --update --backup=off languages/ks-telegram-uk_UA.po languages/ks-telegram.pot",
+    "i18n:compile": "msgfmt languages/ks-telegram-ru_RU.po -o languages/ks-telegram-ru_RU.mo && msgfmt languages/ks-telegram-uk_UA.po -o languages/ks-telegram-uk_UA.mo && msgfmt languages/ks-telegram-uk_UA.po -o languages/ks-telegram-uk.mo",
+    "i18n": "npm run i18n:pot && npm run i18n:merge && npm run i18n:compile",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "esbuild resources/js/admin.js --bundle --format=iife --target=es2018 --outfile=/tmp/ks-telegram-admin.js",
+    "lint:scss": "sass resources/scss:assets/css --no-source-map --style=expanded --quiet",
+    "watch:scss": "sass resources/scss:assets/css --watch --no-source-map --style=expanded",
+    "watch:js": "esbuild resources/js/admin.js --bundle --format=iife --target=es2018 --outfile=assets/js/admin.js --watch"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0",
+    "sass": "^1.93.0"
+  }
+}

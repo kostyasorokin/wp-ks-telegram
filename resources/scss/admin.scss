@@ -1,0 +1,29 @@
+.ks-telegram-admin .form-table td { max-width: 760px; }
+
+.ks-telegram-tabs { margin-top: 16px; max-width: 1120px; }
+
+.ks-telegram-tabs__nav { margin: 0; }
+
+.ks-telegram-tabs__tab { cursor: pointer; }
+
+.ks-telegram-tabs__tab.nav-tab { background: #f0f0f1; color: #50575e; font-size: 14px; line-height: 1.71428571; margin-left: 0; margin-right: 4px; }
+
+.ks-telegram-tabs__tab.nav-tab-active { background: #fff; color: #1d2327; }
+
+.ks-telegram-tabs__panel { border-top: 1px solid #c3c4c7; margin-top: -1px; padding: 14px 0 4px; }
+
+.ks-telegram-tabs-ready .ks-telegram-tabs__panel { display: none; }
+
+.ks-telegram-tabs-ready .ks-telegram-tabs__panel.is-active { display: block; }
+
+.ks-telegram-tabs__panel > h2:first-child { margin-top: 14px; }
+
+.ks-telegram-related-panel[hidden] { display: none; }
+
+.ks-telegram-action { max-width: 760px; }
+
+.ks-telegram-inline-url { display: inline-block; max-width: 100%; overflow-wrap: anywhere; padding: 2px 6px; }
+
+.ks-telegram-action .description { margin: -4px 0 12px; }
+
+.ks-telegram-webhook-actions .button { margin-right: 8px; }

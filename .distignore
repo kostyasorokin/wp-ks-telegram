@@ -1,0 +1,48 @@
+# Files that belong in the repository but not in the distributed plugin.
+#
+# Used by `wp dist-archive` to build the ZIP that goes to WordPress.org. The
+# directory's Plugin Check flags several of these as errors when it finds them
+# inside a plugin — hidden files, "application files" such as a PHPCS config,
+# and the GitHub workflow directory — while every one of them is a normal and
+# wanted part of an open-source repository. The answer is to keep them here and
+# leave them out of the package, not to delete them.
+#
+#   wp dist-archive . ../ks-telegram.zip
+#
+# Everything the plugin needs at runtime — src/, assets/, languages/, templates/,
+# vendor/, the bootstrap, readme.txt and LICENSE — is deliberately absent from
+# this list.
+
+.distignore
+.editorconfig
+.git
+.gitattributes
+.github
+.gitignore
+.idea
+.vscode
+.DS_Store
+
+# Build and quality tooling
+composer.json
+composer.lock
+package.json
+package-lock.json
+node_modules
+phpcs.xml.dist
+phpstan.neon
+.phpcs-cache
+.phpunit.result.cache
+
+# Sources of the compiled assets that do ship
+resources
+
+# Project documentation that is not plugin documentation. readme.txt is the one
+# the directory reads; README.md and the roadmap are for people reading the
+# repository.
+README.md
+docs
+
+# Generated at runtime on the target site, never shipped
+cache
+*.log

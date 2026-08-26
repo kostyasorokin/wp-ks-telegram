@@ -1,0 +1,32 @@
+{
+  "name": "kostyasorokin/ks-telegram",
+  "description": "Modern Telegram notifications, authorization, and bot integration toolkit for WordPress and WooCommerce.",
+  "type": "wordpress-plugin",
+  "license": "GPL-3.0-or-later",
+  "homepage": "https://github.com/kostyasorokin/wp-ks-telegram",
+  "support": {
+    "issues": "https://github.com/kostyasorokin/wp-ks-telegram/issues",
+    "source": "https://github.com/kostyasorokin/wp-ks-telegram"
+  },
+  "authors": [
+    {
+      "name": "Konstantin Sorokin",
+      "homepage": "https://konstantinsorokin.com"
+    }
+  ],
+  "require": {
+    "php": ">=8.4",
+    "telegram-bot/api": "^2.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "KonstantinSorokin\\Telegram\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {}
+  },
+  "scripts": {
+    "lint": "find src -name '*.php' -print0 | xargs -0 -n1 php -l"
+  }
+}

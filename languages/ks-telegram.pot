@@ -1,0 +1,1829 @@
+# Copyright (C) 2026 Konstantin Sorokin
+# This file is distributed under the GPLv3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: KS Telegram 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ks-telegram\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-08-26T10:44:52+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: ks-telegram\n"
+
+#. Plugin Name of the plugin
+#: ks-telegram.php
+#: src/Admin/HealthCheck.php:277
+#: src/Admin/SettingsPage.php:127
+#: src/Admin/SettingsPage.php:128
+#: templates/admin/settings-page.php:69
+msgid "KS Telegram"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: ks-telegram.php
+msgid "https://github.com/kostyasorokin/wp-ks-telegram"
+msgstr ""
+
+#. Description of the plugin
+#: ks-telegram.php
+msgid "Modern Telegram notifications, authorization, and bot integration toolkit for WordPress and WooCommerce."
+msgstr ""
+
+#. Author of the plugin
+#: ks-telegram.php
+msgid "Konstantin Sorokin"
+msgstr ""
+
+#. Author URI of the plugin
+#: ks-telegram.php
+msgid "https://konstantinsorokin.com"
+msgstr ""
+
+#: ks-telegram.php:46
+msgid "KS Telegram requires PHP 8.4 or higher."
+msgstr ""
+
+#: ks-telegram.php:63
+msgid "KS Telegram is missing Composer autoload files. Run composer install in the plugin directory."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:74
+#: src/Admin/HealthCheck.php:151
+msgid "Telegram notifications can be delivered"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:79
+msgid "Contact form spam checks are answering"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:100
+msgid "KS Telegram has no bot token"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:101
+msgid "No bot token is configured, so no notification can be sent. This is expected if you have not set the plugin up yet."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:111
+msgid "Telegram is refusing the bot token"
+msgstr ""
+
+#. translators: %s: error message returned by Telegram.
+#: src/Admin/HealthCheck.php:114
+#, php-format
+msgid "Telegram answered: %s. Until this is fixed no notification of any kind will arrive."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:124
+msgid "KS Telegram has nowhere to send"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:125
+msgid "The bot token works, but no default chat ID is configured. Messages are built and then discarded."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:136
+msgid "The last Telegram delivery failed"
+msgstr ""
+
+#. translators: 1: error message from Telegram, 2: human-readable time difference.
+#: src/Admin/HealthCheck.php:139
+#, php-format
+msgid "The most recent attempt was refused with: %1$s (%2$s ago). Nothing has been delivered since."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:153
+msgid "The bot token works and a chat is configured. Nothing has been sent yet, so there is no delivery history."
+msgstr ""
+
+#. translators: %s: human-readable time difference.
+#: src/Admin/HealthCheck.php:156
+#, php-format
+msgid "The bot token works, a chat is configured, and the last message was delivered %s ago."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:185
+msgid "No contact form spam check to test"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:186
+msgid "Contact Form 7 is not active, so there is no spam check in front of a form here."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:196
+msgid "No reCAPTCHA keys are configured"
+msgstr ""
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Admin/HealthCheck.php:200
+#, php-format
+msgid "Contact Form 7 has no reCAPTCHA keys, yet the last %d submissions in a row were rejected as spam. Something else is refusing them."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:203
+msgid "Contact Form 7 is active with no reCAPTCHA integration, so nothing here can silently reject submissions."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:216
+msgid "Every recent submission was rejected as spam"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:217
+msgid "A reCAPTCHA key is configured"
+msgstr ""
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Admin/HealthCheck.php:221
+#, php-format
+msgid "The last %d submissions in a row were rejected as spam. Real spam arrives in bursts, so an unbroken run points at the spam check rather than at the senders — an expired or unmigrated reCAPTCHA key does exactly this. The key itself was not tested: that check is off by default because it means sending your reCAPTCHA secret to Google, and you can switch it on in the plugin settings."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:224
+msgid "Submissions are not being rejected in a run, so the spam check appears to be working. The key itself was not tested: that check is off by default because it means sending your reCAPTCHA secret to Google, and you can switch it on in the plugin settings."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:234
+msgid "The reCAPTCHA key is answering"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:235
+msgid "Google accepted the key and rejected the test token, which is exactly the right answer. Submissions are being scored rather than refused outright."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:240
+msgid "The reCAPTCHA service could not be reached"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:241
+msgid "The key could not be checked because the request to Google failed. If this persists, every submission will be scored as spam and rejected."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:246
+msgid "The reCAPTCHA key is being refused"
+msgstr ""
+
+#. translators: 1: error code returned by Google, 2: sentence about the consequence.
+#: src/Admin/HealthCheck.php:249
+#, php-format
+msgid "Google refused the key itself: %1$s. %2$s"
+msgstr ""
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Admin/HealthCheck.php:254
+#, php-format
+msgid "%d submission in a row has already been rejected as spam because of it."
+msgid_plural "%d submissions in a row have already been rejected as spam because of it."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/HealthCheck.php:257
+msgid "Every submission to a protected form will be rejected as spam, and the visitor will be told the message could not be sent."
+msgstr ""
+
+#: src/Admin/HealthCheck.php:280
+#: templates/admin/settings-page.php:95
+msgid "Bot token"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:281
+msgid "Configured"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:281
+msgid "Not configured"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:285
+msgid "Configured chats"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:289
+msgid "Last delivered"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:290
+msgid "Never"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:293
+msgid "Last failure"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:295
+msgid "None recorded"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:299
+msgid "Failures on record"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:303
+msgid "Consecutive spam rejections"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:399
+msgid "the reply was not JSON"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:403
+msgid "no error code returned"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:448
+#: src/Plugins/WooCommerce/WooCommerceManager.php:166
+#: templates/admin/user-profile-fields.php:25
+msgid "Telegram"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:455
+msgid "Open KS Telegram settings"
+msgstr ""
+
+#. translators: %s: error message returned by Telegram.
+#: src/Admin/SettingsPage.php:95
+#, php-format
+msgid "Settings saved, but Telegram refused the bot token: %s"
+msgstr ""
+
+#. translators: %s: Telegram bot username.
+#: src/Admin/SettingsPage.php:112
+#, php-format
+msgid "Bot token verified with Telegram: @%s"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:115
+msgid "Bot token verified with Telegram."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:213
+#: src/Admin/SettingsPage.php:248
+#: src/Admin/SettingsPage.php:316
+msgid "You are not allowed to do this."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:227
+msgid "KS Telegram test message."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:233
+msgid "Test message sent."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:234
+msgid "Test message failed. Check the bot token and chat IDs."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:259
+msgid "Chat ID helper list cleared."
+msgstr ""
+
+#. translators: %d: Number of discovered Telegram chats.
+#: src/Admin/SettingsPage.php:299
+#, php-format
+msgid "Telegram chats found: %d."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:302
+msgid "No chats found. Send a message to the bot or add it to a group/channel, then try again."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:335
+msgid "Webhook action completed."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:336
+msgid "Webhook action failed. Check the bot token and HTTPS URL."
+msgstr ""
+
+#: src/Auth/LoginController.php:166
+#: src/Auth/LoginController.php:262
+msgid "Telegram Login is disabled."
+msgstr ""
+
+#: src/Auth/LoginController.php:167
+#: src/Auth/LoginController.php:178
+#: src/Auth/LoginController.php:263
+#: src/Auth/LoginController.php:270
+#: src/Auth/LoginController.php:279
+#: src/Auth/LoginController.php:314
+#: src/Auth/LoginController.php:325
+#: src/Auth/LoginController.php:346
+#: src/Auth/LoginController.php:359
+#: src/Auth/LoginController.php:368
+#: src/Auth/LoginController.php:375
+#: src/Auth/LoginController.php:764
+msgid "Telegram Login failed"
+msgstr ""
+
+#: src/Auth/LoginController.php:177
+msgid "Telegram Login client ID is not configured."
+msgstr ""
+
+#: src/Auth/LoginController.php:278
+msgid "Telegram Login callback is missing required data."
+msgstr ""
+
+#: src/Auth/LoginController.php:313
+msgid "This Telegram Login link was not opened in the browser that started the sign-in. Please start again from this site."
+msgstr ""
+
+#: src/Auth/LoginController.php:324
+msgid "Telegram Login state has expired."
+msgstr ""
+
+#: src/Auth/LoginController.php:345
+msgid "This Telegram Login attempt does not belong to the current session. Please start again from this site."
+msgstr ""
+
+#: src/Auth/LoginController.php:410
+msgid "Telegram account ID is missing."
+msgstr ""
+
+#: src/Auth/LoginController.php:423
+msgid "Current user is invalid."
+msgstr ""
+
+#: src/Auth/LoginController.php:433
+msgid "This Telegram account is already linked to a different user on this site."
+msgstr ""
+
+#: src/Auth/LoginController.php:446
+msgid "No WordPress user is linked to this Telegram account."
+msgstr ""
+
+#: src/Auth/LoginController.php:493
+msgid "Could not create WordPress user."
+msgstr ""
+
+#: src/Auth/LoginController.php:650
+msgid "Log in with Telegram"
+msgstr ""
+
+#: src/Auth/LoginController.php:763
+msgid "Telegram Login security check failed."
+msgstr ""
+
+#: src/Auth/OidcTokenClient.php:51
+msgid "Telegram Login client ID and client secret are required."
+msgstr ""
+
+#: src/Auth/OidcTokenClient.php:73
+msgid "Telegram token request failed."
+msgstr ""
+
+#: src/Auth/OidcTokenClient.php:81
+msgid "Telegram token response is invalid."
+msgstr ""
+
+#: src/Auth/OidcTokenClient.php:88
+msgid "Telegram token request was rejected."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:48
+msgid "Telegram ID token is malformed."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:56
+msgid "Telegram ID token JSON is invalid."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:60
+msgid "Telegram ID token algorithm is not supported."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:70
+msgid "Telegram ID token signature is invalid."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:75
+msgid "Telegram ID token signature could not be verified."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:91
+msgid "Telegram ID token issuer is invalid."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:97
+msgid "Telegram ID token audience is invalid."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:101
+msgid "Telegram ID token has expired."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:105
+msgid "Telegram ID token is not valid yet."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:109
+msgid "Telegram Login nonce is invalid."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:113
+msgid "Telegram ID token subject is missing."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:148
+msgid "Telegram public key was not found."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:164
+msgid "Telegram public keys request failed."
+msgstr ""
+
+#: src/Auth/OidcTokenValidator.php:169
+msgid "Telegram public keys response is invalid."
+msgstr ""
+
+#: src/Auth/ProfileCompletionController.php:152
+msgid "Profile security check failed."
+msgstr ""
+
+#: src/Auth/ProfileCompletionController.php:153
+msgid "Telegram profile update failed"
+msgstr ""
+
+#: src/Auth/ProfileCompletionController.php:278
+msgid "Enter a valid email address."
+msgstr ""
+
+#: src/Auth/ProfileCompletionController.php:279
+msgid "This email address is already used by another account."
+msgstr ""
+
+#: src/Auth/ProfileCompletionController.php:280
+msgid "Enter a valid phone number or leave the field empty."
+msgstr ""
+
+#: src/Auth/TelegramAvatarImporter.php:100
+msgid "Telegram avatar file path is missing."
+msgstr ""
+
+#: src/Auth/TelegramAvatarImporter.php:111
+msgid "Telegram avatar import failed."
+msgstr ""
+
+#. translators: %d: HTTP status code.
+#: src/Auth/TelegramAvatarImporter.php:163
+#, php-format
+msgid "Telegram returned HTTP %d for the profile photo."
+msgstr ""
+
+#: src/Auth/TelegramAvatarImporter.php:172
+msgid "Telegram profile photo download was empty."
+msgstr ""
+
+#: src/Auth/TelegramAvatarImporter.php:276
+msgid "Telegram avatar file size is invalid."
+msgstr ""
+
+#: src/Auth/TelegramAvatarImporter.php:289
+msgid "Telegram avatar upload failed."
+msgstr ""
+
+#: src/Auth/TelegramAvatarImporter.php:299
+msgid "Telegram avatar is not a supported image."
+msgstr ""
+
+#: src/Auth/TelegramAvatarImporter.php:319
+msgid "Telegram avatar could not be stored."
+msgstr ""
+
+#: src/Bot/BotApiManager.php:99
+msgid "Telegram bot token is not configured."
+msgstr ""
+
+#: src/Bot/BotApiManager.php:122
+msgid "Telegram Bot API is unavailable."
+msgstr ""
+
+#. translators: %d: number of message parts that were not sent.
+#: src/Bot/MessageSender.php:176
+#, php-format
+msgid "(message truncated, %d part omitted)"
+msgid_plural "(message truncated, %d parts omitted)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Bot/TelegramApiClient.php:107
+msgid "Invalid Telegram API method."
+msgstr ""
+
+#: src/Bot/TelegramApiClient.php:163
+msgid "Telegram API request failed."
+msgstr ""
+
+#: src/Bot/WebhookController.php:73
+msgid "Telegram webhook is disabled."
+msgstr ""
+
+#: src/Bot/WebhookController.php:85
+msgid "Invalid webhook secret."
+msgstr ""
+
+#: src/Bot/WebhookController.php:109
+msgid "Invalid webhook header."
+msgstr ""
+
+#: src/Bot/WebhookController.php:130
+msgid "Invalid Telegram update payload."
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:59
+msgid "Post status changed"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:78
+msgid "New user registered"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:103
+msgid "Successful login"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:104
+msgid "Failed login"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:105
+msgid "Authorization attempt with empty password"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:106
+msgid "Authorization attempt"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:137
+#: src/Notifications/NotificationManager.php:1101
+msgid "Yes"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:137
+#: src/Notifications/NotificationManager.php:1101
+msgid "No"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:168
+#: src/Notifications/MessageFactory.php:249
+#: src/Notifications/NotificationManager.php:1041
+msgid "Title"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:169
+#: src/Notifications/MessageFactory.php:248
+#: src/Notifications/NotificationManager.php:884
+#: templates/admin/settings-page.php:567
+msgid "Type"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:170
+#: src/Notifications/MessageFactory.php:199
+msgid "Status"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:171
+#: src/Notifications/MessageFactory.php:197
+msgid "Author"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:195
+msgid "Comment ID"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:196
+msgid "Post"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:198
+#: src/Notifications/MessageFactory.php:223
+#: src/Plugins/ContactForm7/ContactForm7.php:350
+#: src/Plugins/Mailchimp/Mailchimp.php:72
+msgid "Email"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:200
+#: src/Notifications/NotificationManager.php:1039
+msgid "Excerpt"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:221
+#: src/Notifications/NotificationManager.php:483
+#: templates/admin/settings-page.php:151
+msgid "Login"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:222
+msgid "Display name"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:224
+msgid "Role"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:247
+msgid "File"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:250
+msgid "URL"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:279
+msgid "Published"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:280
+#: src/Notifications/MessageFactory.php:299
+msgid "Pending"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:281
+msgid "Draft"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:282
+msgid "Scheduled"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:283
+msgid "Private"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:284
+#: src/Notifications/MessageFactory.php:301
+msgid "Trash"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:298
+msgid "Approved"
+msgstr ""
+
+#: src/Notifications/MessageFactory.php:300
+msgid "Spam"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:179
+msgid "Post pending review"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:180
+msgid "Post published"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:181
+msgid "Post scheduled"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:223
+msgid "Post updated"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:225
+msgid "Changed fields"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:248
+msgid "Post moved to trash"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:250
+msgid "Previous status"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:270
+msgid "Post deleted permanently"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:324
+msgid "Scheduled post missed publication time"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:350
+msgid "New comment pending moderation"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:351
+msgid "New approved comment"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:352
+msgid "New spam comment"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:353
+#: src/Notifications/NotificationManager.php:358
+msgid "New comment"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:381
+msgid "Comment approved"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:382
+msgid "Comment marked as spam"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:383
+msgid "Comment moved to moderation"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:412
+msgid "Comment deleted permanently"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:426
+msgid "Comment moved to trash"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:448
+msgid "New administrator created"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:473
+msgid "Administrator logged in"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:481
+msgid "Failed login attempt"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:484
+msgid "Reason"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:513
+msgid "User role changed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:516
+msgid "Old roles"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:517
+msgid "New role"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:524
+msgid "User became an administrator"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:540
+msgid "Password reset requested"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:555
+msgid "Password reset completed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:582
+msgid "User profile updated"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:584
+msgid "Email changed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:594
+msgid "User email changed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:597
+msgid "Old email"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:598
+msgid "New email"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:621
+#: templates/admin/settings-page.php:506
+msgid "Size"
+msgstr ""
+
+#. translators: %d: Large upload threshold in megabytes.
+#: src/Notifications/NotificationManager.php:624
+#, php-format
+msgid "Threshold: %d MB"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:629
+msgid "Large media file uploaded"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:629
+msgid "Threshold"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:635
+msgid "Media file uploaded"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:650
+msgid "Media file deleted"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:675
+msgid "Application password created"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:677
+#: src/Notifications/NotificationManager.php:702
+#: src/Plugins/ContactForm7/ContactForm7.php:352
+#: templates/admin/settings-page.php:568
+msgid "Name"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:700
+msgid "Application password deleted"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:726
+msgid "Important option changed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:728
+msgid "Option"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:729
+msgid "Old value"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:730
+msgid "New value"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:731
+#: src/Notifications/NotificationManager.php:754
+#: src/Notifications/NotificationManager.php:777
+#: src/Notifications/NotificationManager.php:825
+#: src/Notifications/NotificationManager.php:886
+msgid "Actor"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:750
+msgid "Plugin activated"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:752
+#: src/Notifications/NotificationManager.php:775
+msgid "Plugin"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:753
+#: src/Notifications/NotificationManager.php:776
+msgid "Network wide"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:773
+msgid "Plugin deactivated"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:798
+msgid "Critical site error detected"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:799
+msgid "Email subject"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:821
+msgid "Theme switched"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:823
+msgid "New theme"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:824
+msgid "Old theme"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:851
+msgid "Site Health issues detected"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:853
+msgid "Critical issues"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:854
+msgid "Recommended improvements"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:855
+msgid "Passed tests"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:882
+msgid "WordPress update completed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:885
+msgid "Targets"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:909
+msgid "Automatic updates completed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:910
+msgid "Results"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:928
+msgid "WordPress email failed"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:930
+msgid "Error"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:931
+msgid "Code"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:983
+msgid "Edit post"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:997
+msgid "Status change"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:1038
+#: templates/admin/settings-page.php:281
+msgid "Content"
+msgstr ""
+
+#: src/Notifications/NotificationManager.php:1040
+msgid "Slug"
+msgstr ""
+
+#. translators: %d: Number of array items.
+#: src/Notifications/NotificationManager.php:1105
+#, php-format
+msgid "Array with %d items"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:127
+msgid "Rejected"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:206
+msgid "Every recent form submission was rejected as spam"
+msgstr ""
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Plugins/ContactForm7/ContactForm7.php:209
+msgid "Rejected in a row"
+msgstr ""
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Plugins/ContactForm7/ContactForm7.php:209
+#, php-format
+msgid "%d submission"
+msgid_plural "%d submissions"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:210
+msgid "Likely cause"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:210
+msgid "A spam check that has stopped working — expired or unmigrated reCAPTCHA keys, or an anti-spam service refusing every request. Real spam arrives in bursts; a gate that refuses everything does not."
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:249
+msgid "Classified as spam by a spam check"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:250
+msgid "Accepted, but the email could not be sent"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:251
+msgid "Aborted before sending"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:265
+#: src/Plugins/ContactForm7/ContactForm7.php:270
+#: templates/admin/settings-page.php:356
+msgid "Contact Form 7"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:344
+msgid "Address"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:345
+msgid "Budget"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:346
+msgid "Feedback"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:347
+msgid "City"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:348
+msgid "Company"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:349
+#: templates/admin/settings-page.php:242
+msgid "Date"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:351
+#: templates/admin/settings-page.php:470
+msgid "Message"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:353
+msgid "Office"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:354
+msgid "Phone"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:355
+msgid "Position"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:356
+msgid "Project"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:357
+msgid "Service"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:358
+msgid "Subject"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:359
+#: templates/admin/settings-page.php:243
+msgid "Time"
+msgstr ""
+
+#: src/Plugins/ContactForm7/ContactForm7.php:360
+msgid "Website"
+msgstr ""
+
+#: src/Plugins/Mailchimp/Mailchimp.php:70
+msgid "Mailchimp subscription"
+msgstr ""
+
+#: src/Plugins/Mailchimp/Mailchimp.php:71
+msgid "Mailchimp unsubscribe"
+msgstr ""
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:42
+msgid "Order"
+msgstr ""
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:80
+msgid "Order status changed"
+msgstr ""
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:107
+msgid "Product added to cart"
+msgstr ""
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:125
+msgid "Low stock"
+msgstr ""
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:153
+msgid "Products"
+msgstr ""
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:198
+msgid "Billing"
+msgstr ""
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:244
+msgid "Shipping"
+msgstr ""
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:107
+msgid "Telegram handle"
+msgstr ""
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:108
+msgid "@username"
+msgstr ""
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:194
+msgid "Edit order"
+msgstr ""
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:269
+msgid "Edit product"
+msgstr ""
+
+#: templates/admin/settings-page.php:44
+msgid "Channel"
+msgstr ""
+
+#: templates/admin/settings-page.php:45
+msgid "Group"
+msgstr ""
+
+#: templates/admin/settings-page.php:46
+#: templates/admin/settings-page.php:578
+msgid "Private chat"
+msgstr ""
+
+#: templates/admin/settings-page.php:47
+msgid "Supergroup"
+msgstr ""
+
+#: templates/admin/settings-page.php:48
+#: templates/admin/settings-page.php:63
+msgid "Unknown"
+msgstr ""
+
+#: templates/admin/settings-page.php:61
+msgid "Webhook"
+msgstr ""
+
+#: templates/admin/settings-page.php:62
+msgid "getUpdates"
+msgstr ""
+
+#: templates/admin/settings-page.php:83
+msgid "KS Telegram settings sections"
+msgstr ""
+
+#: templates/admin/settings-page.php:84
+msgid "Settings"
+msgstr ""
+
+#: templates/admin/settings-page.php:85
+msgid "Messages"
+msgstr ""
+
+#: templates/admin/settings-page.php:86
+#: templates/admin/settings-page.php:258
+msgid "Notifications"
+msgstr ""
+
+#: templates/admin/settings-page.php:87
+#: templates/admin/settings-page.php:353
+msgid "Plugins"
+msgstr ""
+
+#: templates/admin/settings-page.php:88
+msgid "Tests"
+msgstr ""
+
+#: templates/admin/settings-page.php:92
+msgid "Bot Settings"
+msgstr ""
+
+#: templates/admin/settings-page.php:97
+msgid "Paste token from BotFather"
+msgstr ""
+
+#: templates/admin/settings-page.php:101
+msgid "Default chat IDs"
+msgstr ""
+
+#: templates/admin/settings-page.php:104
+msgid "Use one chat ID per line, or separate IDs with commas."
+msgstr ""
+
+#. translators: %s: Link to the official Telegram Bot API sendMessage documentation.
+#: templates/admin/settings-page.php:110
+#, php-format
+msgid "Telegram Bot API accepts numeric chat IDs and public channel usernames such as @channelusername. To discover numeric IDs, use the Chat ID helper in the Tests tab. Documentation: %s."
+msgstr ""
+
+#: templates/admin/settings-page.php:120
+msgid "Parse mode"
+msgstr ""
+
+#. translators: %s: Link to the Telegram Bot API formatting options documentation.
+#: templates/admin/settings-page.php:132
+#, php-format
+msgid "Controls how Telegram parses message formatting. Use MarkdownV2 or HTML when messages contain markup. Documentation: %s."
+msgstr ""
+
+#: templates/admin/settings-page.php:140
+msgid "Disable web page previews"
+msgstr ""
+
+#: templates/admin/settings-page.php:141
+msgid "Silent notifications"
+msgstr ""
+
+#: templates/admin/settings-page.php:143
+msgid "Telegram will deliver messages without notification sound when this option is enabled."
+msgstr ""
+
+#: templates/admin/settings-page.php:148
+msgid "Telegram Login and Webhook"
+msgstr ""
+
+#: templates/admin/settings-page.php:154
+msgid "Ask new Telegram users for an email address after login"
+msgstr ""
+
+#: templates/admin/settings-page.php:155
+msgid "Create WordPress users for new Telegram accounts"
+msgstr ""
+
+#: templates/admin/settings-page.php:156
+msgid "Download Telegram profile avatars to this site"
+msgstr ""
+
+#: templates/admin/settings-page.php:157
+msgid "Enable Telegram Login shortcode"
+msgstr ""
+
+#: templates/admin/settings-page.php:158
+msgid "Request permission to send direct messages from the bot"
+msgstr ""
+
+#: templates/admin/settings-page.php:159
+msgid "Request phone number permission"
+msgstr ""
+
+#. translators: %s: Link to the official Telegram Login scopes documentation.
+#: templates/admin/settings-page.php:167
+#, php-format
+msgid "Direct message permission uses the telegram:bot_access scope. Telegram does not return a separate ID token claim for it; send attempts should still handle Bot API errors. Documentation: %s."
+msgstr ""
+
+#. translators: %s: Link to the Telegram Bot API file documentation.
+#: templates/admin/settings-page.php:179
+#, php-format
+msgid "Avatar import uses Bot API profile photos and stores the largest available image in the WordPress media library. It requires a bot token. Documentation: %s."
+msgstr ""
+
+#: templates/admin/settings-page.php:189
+msgid "Login client ID"
+msgstr ""
+
+#. translators: %s: Link to the official Telegram Login documentation.
+#: templates/admin/settings-page.php:197
+#, php-format
+msgid "Open @BotFather, choose your bot, then go to Bot Settings > Web Login. Add the allowed URLs and copy the Client ID shown there. Official guide: %s."
+msgstr ""
+
+#: templates/admin/settings-page.php:207
+msgid "Login client secret"
+msgstr ""
+
+#: templates/admin/settings-page.php:209
+msgid "Paste Web Login secret from BotFather"
+msgstr ""
+
+#: templates/admin/settings-page.php:211
+msgid "BotFather shows the Client Secret in the same Web Login section after allowed URLs are configured. Keep it private and do not commit it to code."
+msgstr ""
+
+#: templates/admin/settings-page.php:216
+msgid "Login callback URL"
+msgstr ""
+
+#: templates/admin/settings-page.php:219
+msgid "Add this URL to the allowed URLs for Telegram Login in BotFather."
+msgstr ""
+
+#: templates/admin/settings-page.php:223
+msgid "Webhook secret"
+msgstr ""
+
+#: templates/admin/settings-page.php:229
+msgid "Enable REST webhook endpoint"
+msgstr ""
+
+#: templates/admin/settings-page.php:236
+msgid "Message Content"
+msgstr ""
+
+#: templates/admin/settings-page.php:239
+msgid "Message header"
+msgstr ""
+
+#: templates/admin/settings-page.php:244
+msgid "Message type hashtag"
+msgstr ""
+
+#: templates/admin/settings-page.php:245
+msgid "Site hashtag"
+msgstr ""
+
+#: templates/admin/settings-page.php:247
+msgid "Controls the first line of Telegram notifications, for example date, time, message type, and site hashtag."
+msgstr ""
+
+#: templates/admin/settings-page.php:251
+msgid "Request"
+msgstr ""
+
+#: templates/admin/settings-page.php:252
+msgid "Request context"
+msgstr ""
+
+#: templates/admin/settings-page.php:261
+msgid "Core"
+msgstr ""
+
+#: templates/admin/settings-page.php:264
+msgid "Enable notifications"
+msgstr ""
+
+#: templates/admin/settings-page.php:269
+msgid "Comments"
+msgstr ""
+
+#: templates/admin/settings-page.php:272
+msgid "Approved comments"
+msgstr ""
+
+#: templates/admin/settings-page.php:273
+msgid "Deleted comments"
+msgstr ""
+
+#: templates/admin/settings-page.php:274
+msgid "New comments"
+msgstr ""
+
+#: templates/admin/settings-page.php:275
+msgid "Pending comments"
+msgstr ""
+
+#: templates/admin/settings-page.php:276
+msgid "Spam comments"
+msgstr ""
+
+#: templates/admin/settings-page.php:284
+msgid "All post status changes"
+msgstr ""
+
+#: templates/admin/settings-page.php:285
+msgid "Deleted posts"
+msgstr ""
+
+#: templates/admin/settings-page.php:286
+msgid "Missed scheduled posts"
+msgstr ""
+
+#: templates/admin/settings-page.php:287
+msgid "Posts pending review"
+msgstr ""
+
+#: templates/admin/settings-page.php:288
+msgid "Published posts"
+msgstr ""
+
+#: templates/admin/settings-page.php:289
+msgid "Scheduled posts"
+msgstr ""
+
+#: templates/admin/settings-page.php:290
+msgid "Updated posts"
+msgstr ""
+
+#: templates/admin/settings-page.php:295
+msgid "Media"
+msgstr ""
+
+#: templates/admin/settings-page.php:298
+msgid "Deleted media files"
+msgstr ""
+
+#: templates/admin/settings-page.php:299
+msgid "Large media uploads"
+msgstr ""
+
+#: templates/admin/settings-page.php:300
+msgid "Uploaded media files"
+msgstr ""
+
+#: templates/admin/settings-page.php:303
+msgid "Large upload threshold, MB"
+msgstr ""
+
+#: templates/admin/settings-page.php:309
+msgid "Security"
+msgstr ""
+
+#: templates/admin/settings-page.php:312
+msgid "Include plain passwords in authorization alerts"
+msgstr ""
+
+#: templates/admin/settings-page.php:313
+msgid "Administrator logins"
+msgstr ""
+
+#: templates/admin/settings-page.php:314
+msgid "Application password changes"
+msgstr ""
+
+#: templates/admin/settings-page.php:315
+msgid "Authorization attempts"
+msgstr ""
+
+#: templates/admin/settings-page.php:316
+msgid "Failed logins"
+msgstr ""
+
+#: templates/admin/settings-page.php:317
+msgid "Recovery mode emails"
+msgstr ""
+
+#: templates/admin/settings-page.php:318
+msgid "Failed WordPress emails"
+msgstr ""
+
+#: templates/admin/settings-page.php:323
+msgid "System"
+msgstr ""
+
+#: templates/admin/settings-page.php:326
+msgid "Important option changes"
+msgstr ""
+
+#: templates/admin/settings-page.php:327
+msgid "Plugin activations"
+msgstr ""
+
+#: templates/admin/settings-page.php:328
+msgid "Plugin deactivations"
+msgstr ""
+
+#: templates/admin/settings-page.php:329
+msgid "Site Health issues"
+msgstr ""
+
+#: templates/admin/settings-page.php:330
+msgid "Theme switches"
+msgstr ""
+
+#: templates/admin/settings-page.php:331
+msgid "WordPress, plugin, and theme updates"
+msgstr ""
+
+#: templates/admin/settings-page.php:336
+msgid "Users"
+msgstr ""
+
+#: templates/admin/settings-page.php:339
+msgid "New administrators"
+msgstr ""
+
+#: templates/admin/settings-page.php:340
+msgid "Completed password resets"
+msgstr ""
+
+#: templates/admin/settings-page.php:341
+msgid "Password reset requests"
+msgstr ""
+
+#: templates/admin/settings-page.php:342
+msgid "Profile updates"
+msgstr ""
+
+#: templates/admin/settings-page.php:343
+msgid "User email changes"
+msgstr ""
+
+#: templates/admin/settings-page.php:344
+msgid "User registrations"
+msgstr ""
+
+#: templates/admin/settings-page.php:345
+msgid "User role changes"
+msgstr ""
+
+#: templates/admin/settings-page.php:359
+msgid "Contact Form 7 submissions"
+msgstr ""
+
+#: templates/admin/settings-page.php:360
+msgid "Also send submissions Contact Form 7 rejected (spam, mail failure)"
+msgstr ""
+
+#: templates/admin/settings-page.php:362
+msgid "A submission rejected as spam never reaches the notification hook, so it arrives nowhere and the visitor is told the message could not be sent. Forwarding rejections lets you see whether the spam check is right."
+msgstr ""
+
+#: templates/admin/settings-page.php:363
+msgid "Do not let Contact Form 7 send email — Telegram is the delivery channel"
+msgstr ""
+
+#: templates/admin/settings-page.php:364
+msgid "Contact Form 7 shows an error whenever the site cannot send mail, whatever the reason. On a site that delivers enquiries through Telegram, skipping the mail step makes it report the truth. Ignored unless a bot token and a chat are configured, so this can never accept an enquiry and deliver it nowhere."
+msgstr ""
+
+#: templates/admin/settings-page.php:368
+msgid "Warn about a broken spam check"
+msgstr ""
+
+#: templates/admin/settings-page.php:373
+msgid "Send a warning once this many submissions in a row have been rejected as spam. Real spam arrives in bursts; a check that has stopped working rejects everything, so an unbroken run is evidence about the check rather than about the senders. Set to 0 to never warn."
+msgstr ""
+
+#: templates/admin/settings-page.php:374
+msgid "Let Site Health test the reCAPTCHA key against Google"
+msgstr ""
+
+#: templates/admin/settings-page.php:375
+msgid "Off by default because it sends your Contact Form 7 reCAPTCHA secret key to Google in order to ask whether the key is still accepted. That is the only request this plugin ever makes to Google. With it off, Site Health still reports a run of spam rejections, which is the same symptom without the third party."
+msgstr ""
+
+#: templates/admin/settings-page.php:379
+msgid "Mailchimp"
+msgstr ""
+
+#: templates/admin/settings-page.php:382
+msgid "Mailchimp subscriptions"
+msgstr ""
+
+#: templates/admin/settings-page.php:383
+msgid "Mailchimp unsubscribes"
+msgstr ""
+
+#: templates/admin/settings-page.php:388
+msgid "WooCommerce"
+msgstr ""
+
+#: templates/admin/settings-page.php:391
+msgid "Add to cart events"
+msgstr ""
+
+#: templates/admin/settings-page.php:392
+msgid "Checkout Telegram handle field"
+msgstr ""
+
+#: templates/admin/settings-page.php:393
+msgid "Low stock alerts"
+msgstr ""
+
+#: templates/admin/settings-page.php:394
+msgid "Order status changes"
+msgstr ""
+
+#: templates/admin/settings-page.php:395
+msgid "New orders"
+msgstr ""
+
+#: templates/admin/settings-page.php:400
+msgid "WooCommerce billing message"
+msgstr ""
+
+#: templates/admin/settings-page.php:403
+msgid "Billing address"
+msgstr ""
+
+#: templates/admin/settings-page.php:404
+msgid "Billing company"
+msgstr ""
+
+#: templates/admin/settings-page.php:405
+msgid "Billing email"
+msgstr ""
+
+#: templates/admin/settings-page.php:406
+msgid "Billing name"
+msgstr ""
+
+#: templates/admin/settings-page.php:407
+msgid "Billing phone"
+msgstr ""
+
+#: templates/admin/settings-page.php:408
+msgid "Billing section"
+msgstr ""
+
+#: templates/admin/settings-page.php:409
+msgid "Billing Telegram handle"
+msgstr ""
+
+#: templates/admin/settings-page.php:414
+msgid "WooCommerce order message"
+msgstr ""
+
+#: templates/admin/settings-page.php:417
+msgid "Customer note"
+msgstr ""
+
+#: templates/admin/settings-page.php:418
+msgid "Order transaction ID"
+msgstr ""
+
+#: templates/admin/settings-page.php:419
+msgid "Order UTM fields"
+msgstr ""
+
+#: templates/admin/settings-page.php:424
+msgid "WooCommerce shipping message"
+msgstr ""
+
+#: templates/admin/settings-page.php:427
+msgid "Shipping address"
+msgstr ""
+
+#: templates/admin/settings-page.php:428
+msgid "Shipping company"
+msgstr ""
+
+#: templates/admin/settings-page.php:429
+msgid "Shipping name"
+msgstr ""
+
+#: templates/admin/settings-page.php:430
+msgid "Shipping phone"
+msgstr ""
+
+#: templates/admin/settings-page.php:431
+msgid "Shipping section"
+msgstr ""
+
+#: templates/admin/settings-page.php:440
+msgid "Save Settings"
+msgstr ""
+
+#: templates/admin/settings-page.php:448
+msgid "Webhook Actions"
+msgstr ""
+
+#: templates/admin/settings-page.php:450
+msgid "Register the webhook after changing the bot token, HTTPS URL, or webhook secret. Delete it when the bot should stop sending updates to this site."
+msgstr ""
+
+#: templates/admin/settings-page.php:454
+msgid "Register Webhook"
+msgstr ""
+
+#: templates/admin/settings-page.php:455
+msgid "Delete Webhook"
+msgstr ""
+
+#: templates/admin/settings-page.php:461
+msgid "Test Message"
+msgstr ""
+
+#: templates/admin/settings-page.php:466
+msgid "Chat ID override"
+msgstr ""
+
+#: templates/admin/settings-page.php:474
+msgid "Send Test Message"
+msgstr ""
+
+#: templates/admin/settings-page.php:479
+msgid "Delivery"
+msgstr ""
+
+#: templates/admin/settings-page.php:481
+msgid "The last attempt failed and nothing has been delivered since."
+msgstr ""
+
+#: templates/admin/settings-page.php:486
+msgid "No message has been delivered yet."
+msgstr ""
+
+#. translators: %s: human-readable time difference.
+#: templates/admin/settings-page.php:490
+#, php-format
+msgid "Last delivered %s ago."
+msgstr ""
+
+#: templates/admin/settings-page.php:498
+msgid "No failures on record."
+msgstr ""
+
+#: templates/admin/settings-page.php:503
+msgid "When"
+msgstr ""
+
+#: templates/admin/settings-page.php:504
+msgid "Chat"
+msgstr ""
+
+#: templates/admin/settings-page.php:505
+msgid "Telegram said"
+msgstr ""
+
+#. translators: %d: message length in characters.
+#: templates/admin/settings-page.php:524
+#, php-format
+msgid "%d character"
+msgid_plural "%d characters"
+msgstr[0] ""
+msgstr[1] ""
+
+#: templates/admin/settings-page.php:531
+msgid "These are the words Telegram itself returned. \"chat not found\" and \"bot was blocked by the user\" are different problems with different fixes; both used to arrive as a bare failure with no explanation."
+msgstr ""
+
+#: templates/admin/settings-page.php:536
+msgid "Chat ID helper"
+msgstr ""
+
+#: templates/admin/settings-page.php:538
+msgid "Send a message to the bot, add it to a group, or add it as a channel admin, then scan updates. If webhook is enabled, incoming webhook updates are saved here automatically without message text."
+msgstr ""
+
+#: templates/admin/settings-page.php:540
+msgid "How to find a chat ID"
+msgstr ""
+
+#: templates/admin/settings-page.php:542
+msgid "Private profile: open the bot in Telegram and send any message to it. Then scan latest updates, or refresh this page if webhook is enabled."
+msgstr ""
+
+#: templates/admin/settings-page.php:543
+msgid "Group or supergroup: add the bot to the group and send a command or message the bot can receive. If BotFather privacy mode is enabled, send a command addressed to the bot, for example /start@your_bot_username."
+msgstr ""
+
+#: templates/admin/settings-page.php:544
+msgid "Channel: add the bot as a channel administrator and publish a new post. Public channels can also be used as @channelusername."
+msgstr ""
+
+#: templates/admin/settings-page.php:545
+msgid "Copy the discovered ID from the table into Default chat IDs. Negative IDs for groups, supergroups, and channels are normal."
+msgstr ""
+
+#: templates/admin/settings-page.php:552
+msgid "Scan latest updates"
+msgstr ""
+
+#: templates/admin/settings-page.php:553
+msgid "Clear list"
+msgstr ""
+
+#: templates/admin/settings-page.php:556
+msgid "The scan button uses getUpdates and can fail while a Telegram webhook is active. In that case, send a fresh message and refresh this page after the webhook receives it."
+msgstr ""
+
+#: templates/admin/settings-page.php:561
+msgid "No Telegram chats discovered yet."
+msgstr ""
+
+#: templates/admin/settings-page.php:566
+msgid "Chat ID"
+msgstr ""
+
+#: templates/admin/settings-page.php:569
+msgid "Source"
+msgstr ""
+
+#: templates/admin/settings-page.php:570
+msgid "Last seen"
+msgstr ""
+
+#: templates/admin/user-profile-fields.php:30
+msgid "Telegram ID"
+msgstr ""
+
+#: templates/admin/user-profile-fields.php:37
+msgid "Telegram username"
+msgstr ""
+
+#: templates/admin/user-profile-fields.php:44
+msgid "Telegram phone"
+msgstr ""
+
+#: templates/admin/user-profile-fields.php:56
+msgid "Stored from Telegram Login when the user shares a phone number, or entered manually."
+msgstr ""
+
+#: templates/auth/profile-completion.php:41
+msgid "Complete your profile"
+msgstr ""
+
+#: templates/auth/profile-completion.php:42
+msgid "Telegram does not provide an email address, so we need one to finish creating your WordPress account."
+msgstr ""
+
+#: templates/auth/profile-completion.php:51
+msgid "Email address"
+msgstr ""
+
+#: templates/auth/profile-completion.php:64
+msgid "Phone number"
+msgstr ""
+
+#: templates/auth/profile-completion.php:65
+msgid "optional"
+msgstr ""
+
+#: templates/auth/profile-completion.php:78
+msgid "Save and continue"
+msgstr ""

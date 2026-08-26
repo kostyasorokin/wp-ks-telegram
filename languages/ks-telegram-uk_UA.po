@@ -1,0 +1,2044 @@
+# Copyright (C) 2026 Konstantin Sorokin
+# This file is distributed under the GPLv3 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: KS Telegram 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ks-telegram\n"
+"POT-Creation-Date: 2026-08-26T10:44:52+00:00\n"
+"PO-Revision-Date: 2026-04-27 00:00+0000\n"
+"Last-Translator: Konstantin Sorokin <https://konstantinsorokin.com>\n"
+"Language-Team: Ukrainian <uk_UA>\n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Codex\n"
+"X-Domain: ks-telegram\n"
+
+#. Plugin Name of the plugin
+#: ks-telegram.php src/Admin/HealthCheck.php:277 src/Admin/SettingsPage.php:127
+#: src/Admin/SettingsPage.php:128 templates/admin/settings-page.php:69
+msgid "KS Telegram"
+msgstr "KS Telegram"
+
+#. Plugin URI of the plugin
+#: ks-telegram.php
+msgid "https://github.com/kostyasorokin/wp-ks-telegram"
+msgstr "https://github.com/kostyasorokin/wp-ks-telegram"
+
+#. Description of the plugin
+#: ks-telegram.php
+msgid ""
+"Modern Telegram notifications, authorization, and bot integration toolkit "
+"for WordPress and WooCommerce."
+msgstr ""
+"Сучасні сповіщення Telegram, авторизація та інструменти інтеграції бота для "
+"WordPress і WooCommerce."
+
+#. Author of the plugin
+#: ks-telegram.php
+msgid "Konstantin Sorokin"
+msgstr "Костянтин Сорокін"
+
+#. Author URI of the plugin
+#: ks-telegram.php
+msgid "https://konstantinsorokin.com"
+msgstr "https://konstantinsorokin.com"
+
+#: ks-telegram.php:46
+msgid "KS Telegram requires PHP 8.4 or higher."
+msgstr "KS Telegram потребує PHP 8.4 або вище."
+
+#: ks-telegram.php:63
+msgid ""
+"KS Telegram is missing Composer autoload files. Run composer install in the "
+"plugin directory."
+msgstr ""
+"У KS Telegram відсутні файли автозавантаження Composer. Запустіть composer "
+"install у директорії плагіна."
+
+#: src/Admin/HealthCheck.php:74 src/Admin/HealthCheck.php:151
+msgid "Telegram notifications can be delivered"
+msgstr "Сповіщення в Telegram доставляються"
+
+#: src/Admin/HealthCheck.php:79
+msgid "Contact form spam checks are answering"
+msgstr "Спам-перевірки перед формами відповідають"
+
+#: src/Admin/HealthCheck.php:100
+msgid "KS Telegram has no bot token"
+msgstr "У KS Telegram немає токена бота"
+
+#: src/Admin/HealthCheck.php:101
+msgid ""
+"No bot token is configured, so no notification can be sent. This is expected "
+"if you have not set the plugin up yet."
+msgstr ""
+"Токен бота не задано, тому надіслати сповіщення неможливо. Це нормально, "
+"якщо ви ще не налаштовували плагін."
+
+#: src/Admin/HealthCheck.php:111
+msgid "Telegram is refusing the bot token"
+msgstr "Telegram відхиляє токен бота"
+
+#. translators: %s: error message returned by Telegram.
+#: src/Admin/HealthCheck.php:114
+#, php-format
+msgid ""
+"Telegram answered: %s. Until this is fixed no notification of any kind will "
+"arrive."
+msgstr ""
+"Telegram відповів: %s. Доки це не виправлено, не надійде жодне сповіщення."
+
+#: src/Admin/HealthCheck.php:124
+msgid "KS Telegram has nowhere to send"
+msgstr "KS Telegram нікуди надсилати"
+
+#: src/Admin/HealthCheck.php:125
+msgid ""
+"The bot token works, but no default chat ID is configured. Messages are "
+"built and then discarded."
+msgstr ""
+"Токен бота працює, але не задано жодного чату за замовчуванням. Повідомлення "
+"формуються й відкидаються."
+
+#: src/Admin/HealthCheck.php:136
+msgid "The last Telegram delivery failed"
+msgstr "Остання доставка в Telegram не вдалася"
+
+#. translators: 1: error message from Telegram, 2: human-readable time difference.
+#: src/Admin/HealthCheck.php:139
+#, php-format
+msgid ""
+"The most recent attempt was refused with: %1$s (%2$s ago). Nothing has been "
+"delivered since."
+msgstr ""
+"Останню спробу відхилено: %1$s (%2$s тому). Відтоді нічого не доставлено."
+
+#: src/Admin/HealthCheck.php:153
+msgid ""
+"The bot token works and a chat is configured. Nothing has been sent yet, so "
+"there is no delivery history."
+msgstr ""
+"Токен бота працює, чат задано. Поки нічого не надсилалося, тому історії "
+"доставки немає."
+
+#. translators: %s: human-readable time difference.
+#: src/Admin/HealthCheck.php:156
+#, php-format
+msgid ""
+"The bot token works, a chat is configured, and the last message was "
+"delivered %s ago."
+msgstr ""
+"Токен бота працює, чат задано, останнє повідомлення доставлено %s тому."
+
+#: src/Admin/HealthCheck.php:185
+msgid "No contact form spam check to test"
+msgstr "Перевіряти нічого: спам-фільтра перед формою немає"
+
+#: src/Admin/HealthCheck.php:186
+msgid ""
+"Contact Form 7 is not active, so there is no spam check in front of a form "
+"here."
+msgstr ""
+"Contact Form 7 не активний, тому спам-перевірки перед формою тут немає."
+
+#: src/Admin/HealthCheck.php:196
+msgid "No reCAPTCHA keys are configured"
+msgstr "Ключі reCAPTCHA не задано"
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Admin/HealthCheck.php:200
+#, php-format
+msgid ""
+"Contact Form 7 has no reCAPTCHA keys, yet the last %d submissions in a row "
+"were rejected as spam. Something else is refusing them."
+msgstr ""
+"У Contact Form 7 немає ключів reCAPTCHA, але останні %d заявок поспіль "
+"відхилено як спам. Їх відхиляє щось інше."
+
+#: src/Admin/HealthCheck.php:203
+msgid ""
+"Contact Form 7 is active with no reCAPTCHA integration, so nothing here can "
+"silently reject submissions."
+msgstr ""
+"Contact Form 7 активний без інтеграції з reCAPTCHA, тому тихо відхиляти "
+"заявки тут нічому."
+
+#: src/Admin/HealthCheck.php:216
+msgid "Every recent submission was rejected as spam"
+msgstr "Усі останні заявки відхилено як спам"
+
+#: src/Admin/HealthCheck.php:217
+msgid "A reCAPTCHA key is configured"
+msgstr "Ключ reCAPTCHA задано"
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Admin/HealthCheck.php:221
+#, php-format
+msgid ""
+"The last %d submissions in a row were rejected as spam. Real spam arrives in "
+"bursts, so an unbroken run points at the spam check rather than at the "
+"senders — an expired or unmigrated reCAPTCHA key does exactly this. The key "
+"itself was not tested: that check is off by default because it means sending "
+"your reCAPTCHA secret to Google, and you can switch it on in the plugin "
+"settings."
+msgstr ""
+"Останні %d заявок поспіль відхилено як спам. Справжній спам приходить "
+"хвилями, тому безперервна серія вказує на спам-перевірку, а не на "
+"відправників — прострочений або не перенесений ключ reCAPTCHA поводиться "
+"саме так. Сам ключ не перевірявся: ця перевірка вимкнена за замовчуванням, "
+"бо означає надсилання вашого секрета reCAPTCHA до Google. Увімкнути її можна "
+"в налаштуваннях плагіна."
+
+#: src/Admin/HealthCheck.php:224
+msgid ""
+"Submissions are not being rejected in a run, so the spam check appears to be "
+"working. The key itself was not tested: that check is off by default because "
+"it means sending your reCAPTCHA secret to Google, and you can switch it on "
+"in the plugin settings."
+msgstr ""
+"Заявки не відхиляються серією, тому спам-перевірка, схоже, працює. Сам ключ "
+"не перевірявся: ця перевірка вимкнена за замовчуванням, бо означає "
+"надсилання вашого секрета reCAPTCHA до Google. Увімкнути її можна в "
+"налаштуваннях плагіна."
+
+#: src/Admin/HealthCheck.php:234
+msgid "The reCAPTCHA key is answering"
+msgstr "Ключ reCAPTCHA відповідає"
+
+#: src/Admin/HealthCheck.php:235
+msgid ""
+"Google accepted the key and rejected the test token, which is exactly the "
+"right answer. Submissions are being scored rather than refused outright."
+msgstr ""
+"Google прийняв ключ і відхилив тестовий токен — це саме правильна відповідь. "
+"Заявки оцінюються, а не відхиляються поспіль."
+
+#: src/Admin/HealthCheck.php:240
+msgid "The reCAPTCHA service could not be reached"
+msgstr "Служба reCAPTCHA недоступна"
+
+#: src/Admin/HealthCheck.php:241
+msgid ""
+"The key could not be checked because the request to Google failed. If this "
+"persists, every submission will be scored as spam and rejected."
+msgstr ""
+"Перевірити ключ не вдалося: запит до Google не пройшов. Якщо це "
+"повторюється, кожну заявку буде оцінено як спам і відхилено."
+
+#: src/Admin/HealthCheck.php:246
+msgid "The reCAPTCHA key is being refused"
+msgstr "Ключ reCAPTCHA відхиляється"
+
+#. translators: 1: error code returned by Google, 2: sentence about the consequence.
+#: src/Admin/HealthCheck.php:249
+#, php-format
+msgid "Google refused the key itself: %1$s. %2$s"
+msgstr "Google відхилив сам ключ: %1$s. %2$s"
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Admin/HealthCheck.php:254
+#, php-format
+msgid "%d submission in a row has already been rejected as spam because of it."
+msgid_plural ""
+"%d submissions in a row have already been rejected as spam because of it."
+msgstr[0] "%d заявка поспіль уже відхилена як спам через це."
+msgstr[1] "%d заявки поспіль уже відхилені як спам через це."
+msgstr[2] "%d заявок поспіль уже відхилені як спам через це."
+
+#: src/Admin/HealthCheck.php:257
+msgid ""
+"Every submission to a protected form will be rejected as spam, and the "
+"visitor will be told the message could not be sent."
+msgstr ""
+"Кожну заявку в захищену форму буде відхилено як спам, а відвідувачу "
+"повідомлять, що надіслати не вдалося."
+
+#: src/Admin/HealthCheck.php:280 templates/admin/settings-page.php:95
+msgid "Bot token"
+msgstr "Токен бота"
+
+#: src/Admin/HealthCheck.php:281
+msgid "Configured"
+msgstr "Задано"
+
+#: src/Admin/HealthCheck.php:281
+msgid "Not configured"
+msgstr "Не задано"
+
+#: src/Admin/HealthCheck.php:285
+msgid "Configured chats"
+msgstr "Задані чати"
+
+#: src/Admin/HealthCheck.php:289
+msgid "Last delivered"
+msgstr "Остання доставка"
+
+#: src/Admin/HealthCheck.php:290
+msgid "Never"
+msgstr "Ніколи"
+
+#: src/Admin/HealthCheck.php:293
+msgid "Last failure"
+msgstr "Останній збій"
+
+#: src/Admin/HealthCheck.php:295
+msgid "None recorded"
+msgstr "Не зафіксовано"
+
+#: src/Admin/HealthCheck.php:299
+msgid "Failures on record"
+msgstr "Збоїв у журналі"
+
+#: src/Admin/HealthCheck.php:303
+msgid "Consecutive spam rejections"
+msgstr "Спам-відмов поспіль"
+
+#: src/Admin/HealthCheck.php:399
+msgid "the reply was not JSON"
+msgstr ""
+
+#: src/Admin/HealthCheck.php:403
+msgid "no error code returned"
+msgstr "код помилки не повернувся"
+
+#: src/Admin/HealthCheck.php:448
+#: src/Plugins/WooCommerce/WooCommerceManager.php:166
+#: templates/admin/user-profile-fields.php:25
+msgid "Telegram"
+msgstr "Telegram"
+
+#: src/Admin/HealthCheck.php:455
+msgid "Open KS Telegram settings"
+msgstr "Відкрити налаштування KS Telegram"
+
+#. translators: %s: error message returned by Telegram.
+#: src/Admin/SettingsPage.php:95
+#, php-format
+msgid "Settings saved, but Telegram refused the bot token: %s"
+msgstr "Налаштування збережено, але Telegram відхилив токен бота: %s"
+
+#. translators: %s: Telegram bot username.
+#: src/Admin/SettingsPage.php:112
+#, php-format
+msgid "Bot token verified with Telegram: @%s"
+msgstr "Токен бота перевірено в Telegram: @%s"
+
+#: src/Admin/SettingsPage.php:115
+msgid "Bot token verified with Telegram."
+msgstr "Токен бота перевірено в Telegram."
+
+#: src/Admin/SettingsPage.php:213 src/Admin/SettingsPage.php:248
+#: src/Admin/SettingsPage.php:316
+msgid "You are not allowed to do this."
+msgstr "У вас немає прав для виконання цієї дії."
+
+#: src/Admin/SettingsPage.php:227
+msgid "KS Telegram test message."
+msgstr "Тестове повідомлення KS Telegram."
+
+#: src/Admin/SettingsPage.php:233
+msgid "Test message sent."
+msgstr "Тестове повідомлення надіслано."
+
+#: src/Admin/SettingsPage.php:234
+msgid "Test message failed. Check the bot token and chat IDs."
+msgstr ""
+"Не вдалося надіслати тестове повідомлення. Перевірте токен бота та ID чатів."
+
+#: src/Admin/SettingsPage.php:259
+msgid "Chat ID helper list cleared."
+msgstr "Список помічника Chat ID очищено."
+
+#. translators: %d: Number of discovered Telegram chats.
+#: src/Admin/SettingsPage.php:299
+#, php-format
+msgid "Telegram chats found: %d."
+msgstr "Знайдено чатів Telegram: %d."
+
+#: src/Admin/SettingsPage.php:302
+msgid ""
+"No chats found. Send a message to the bot or add it to a group/channel, then "
+"try again."
+msgstr ""
+"Чати не знайдено. Надішліть повідомлення боту або додайте його в групу/"
+"канал, потім спробуйте знову."
+
+#: src/Admin/SettingsPage.php:335
+msgid "Webhook action completed."
+msgstr "Дію з webhook виконано."
+
+#: src/Admin/SettingsPage.php:336
+msgid "Webhook action failed. Check the bot token and HTTPS URL."
+msgstr "Не вдалося виконати дію з webhook. Перевірте токен бота та HTTPS URL."
+
+#: src/Auth/LoginController.php:166 src/Auth/LoginController.php:262
+msgid "Telegram Login is disabled."
+msgstr "Вхід через Telegram вимкнено."
+
+#: src/Auth/LoginController.php:167 src/Auth/LoginController.php:178
+#: src/Auth/LoginController.php:263 src/Auth/LoginController.php:270
+#: src/Auth/LoginController.php:279 src/Auth/LoginController.php:314
+#: src/Auth/LoginController.php:325 src/Auth/LoginController.php:346
+#: src/Auth/LoginController.php:359 src/Auth/LoginController.php:368
+#: src/Auth/LoginController.php:375 src/Auth/LoginController.php:764
+msgid "Telegram Login failed"
+msgstr "Не вдалося увійти через Telegram"
+
+#: src/Auth/LoginController.php:177
+msgid "Telegram Login client ID is not configured."
+msgstr "Client ID для входу через Telegram не налаштовано."
+
+#: src/Auth/LoginController.php:278
+msgid "Telegram Login callback is missing required data."
+msgstr "У callback входу через Telegram бракує обов’язкових даних."
+
+#: src/Auth/LoginController.php:313
+msgid ""
+"This Telegram Login link was not opened in the browser that started the sign-"
+"in. Please start again from this site."
+msgstr ""
+"Це посилання входу через Telegram відкрито не в тому браузері, де вхід "
+"починався. Почніть заново з цього сайту."
+
+#: src/Auth/LoginController.php:324
+msgid "Telegram Login state has expired."
+msgstr "Стан входу через Telegram минув."
+
+#: src/Auth/LoginController.php:345
+msgid ""
+"This Telegram Login attempt does not belong to the current session. Please "
+"start again from this site."
+msgstr ""
+"Ця спроба входу через Telegram не належить до поточного сеансу. Почніть "
+"заново з цього сайту."
+
+#: src/Auth/LoginController.php:410
+msgid "Telegram account ID is missing."
+msgstr "ID акаунта Telegram відсутній."
+
+#: src/Auth/LoginController.php:423
+msgid "Current user is invalid."
+msgstr "Поточний користувач некоректний."
+
+#: src/Auth/LoginController.php:433
+msgid ""
+"This Telegram account is already linked to a different user on this site."
+msgstr ""
+"Цей акаунт Telegram уже прив’язано до іншого користувача на цьому сайті."
+
+#: src/Auth/LoginController.php:446
+msgid "No WordPress user is linked to this Telegram account."
+msgstr "До цього акаунта Telegram не прив’язано користувача WordPress."
+
+#: src/Auth/LoginController.php:493
+msgid "Could not create WordPress user."
+msgstr "Не вдалося створити користувача WordPress."
+
+#: src/Auth/LoginController.php:650
+msgid "Log in with Telegram"
+msgstr "Увійти через Telegram"
+
+#: src/Auth/LoginController.php:763
+msgid "Telegram Login security check failed."
+msgstr "Перевірку безпеки входу через Telegram не пройдено."
+
+#: src/Auth/OidcTokenClient.php:51
+msgid "Telegram Login client ID and client secret are required."
+msgstr "Для входу через Telegram потрібні Client ID і Client Secret."
+
+#: src/Auth/OidcTokenClient.php:73
+msgid "Telegram token request failed."
+msgstr "Запит токена Telegram не виконано."
+
+#: src/Auth/OidcTokenClient.php:81
+msgid "Telegram token response is invalid."
+msgstr "Відповідь із токеном Telegram некоректна."
+
+#: src/Auth/OidcTokenClient.php:88
+msgid "Telegram token request was rejected."
+msgstr "Запит токена Telegram відхилено."
+
+#: src/Auth/OidcTokenValidator.php:48
+msgid "Telegram ID token is malformed."
+msgstr "ID token Telegram має неправильний формат."
+
+#: src/Auth/OidcTokenValidator.php:56
+msgid "Telegram ID token JSON is invalid."
+msgstr "JSON в ID token Telegram некоректний."
+
+#: src/Auth/OidcTokenValidator.php:60
+msgid "Telegram ID token algorithm is not supported."
+msgstr "Алгоритм ID token Telegram не підтримується."
+
+#: src/Auth/OidcTokenValidator.php:70
+msgid "Telegram ID token signature is invalid."
+msgstr "Підпис ID token Telegram некоректний."
+
+#: src/Auth/OidcTokenValidator.php:75
+msgid "Telegram ID token signature could not be verified."
+msgstr "Не вдалося перевірити підпис ID token Telegram."
+
+#: src/Auth/OidcTokenValidator.php:91
+msgid "Telegram ID token issuer is invalid."
+msgstr "Issuer ID token Telegram некоректний."
+
+#: src/Auth/OidcTokenValidator.php:97
+msgid "Telegram ID token audience is invalid."
+msgstr "Audience ID token Telegram некоректний."
+
+#: src/Auth/OidcTokenValidator.php:101
+msgid "Telegram ID token has expired."
+msgstr "Термін дії ID token Telegram минув."
+
+#: src/Auth/OidcTokenValidator.php:105
+msgid "Telegram ID token is not valid yet."
+msgstr "ID token Telegram ще не дійсний."
+
+#: src/Auth/OidcTokenValidator.php:109
+msgid "Telegram Login nonce is invalid."
+msgstr "Nonce входу через Telegram некоректний."
+
+#: src/Auth/OidcTokenValidator.php:113
+msgid "Telegram ID token subject is missing."
+msgstr "Subject в ID token Telegram відсутній."
+
+#: src/Auth/OidcTokenValidator.php:148
+msgid "Telegram public key was not found."
+msgstr "Публічний ключ Telegram не знайдено."
+
+#: src/Auth/OidcTokenValidator.php:164
+msgid "Telegram public keys request failed."
+msgstr "Не вдалося отримати публічні ключі Telegram."
+
+#: src/Auth/OidcTokenValidator.php:169
+msgid "Telegram public keys response is invalid."
+msgstr "Відповідь із публічними ключами Telegram некоректна."
+
+#: src/Auth/ProfileCompletionController.php:152
+msgid "Profile security check failed."
+msgstr "Перевірку безпеки профілю не пройдено."
+
+#: src/Auth/ProfileCompletionController.php:153
+msgid "Telegram profile update failed"
+msgstr "Не вдалося оновити профіль Telegram"
+
+#: src/Auth/ProfileCompletionController.php:278
+msgid "Enter a valid email address."
+msgstr "Введіть коректний email."
+
+#: src/Auth/ProfileCompletionController.php:279
+msgid "This email address is already used by another account."
+msgstr "Цей email вже використовується іншим акаунтом."
+
+#: src/Auth/ProfileCompletionController.php:280
+msgid "Enter a valid phone number or leave the field empty."
+msgstr "Введіть коректний номер телефону або залиште поле порожнім."
+
+#: src/Auth/TelegramAvatarImporter.php:100
+msgid "Telegram avatar file path is missing."
+msgstr "Шлях до файлу аватарки Telegram відсутній."
+
+#: src/Auth/TelegramAvatarImporter.php:111
+msgid "Telegram avatar import failed."
+msgstr "Не вдалося імпортувати аватарку Telegram."
+
+#. translators: %d: HTTP status code.
+#: src/Auth/TelegramAvatarImporter.php:163
+#, php-format
+msgid "Telegram returned HTTP %d for the profile photo."
+msgstr "Telegram повернув HTTP %d на запит фотографії профілю."
+
+#: src/Auth/TelegramAvatarImporter.php:172
+msgid "Telegram profile photo download was empty."
+msgstr "Завантажена фотографія профілю Telegram виявилася порожньою."
+
+#: src/Auth/TelegramAvatarImporter.php:276
+msgid "Telegram avatar file size is invalid."
+msgstr "Розмір файлу аватарки Telegram некоректний."
+
+#: src/Auth/TelegramAvatarImporter.php:289
+msgid "Telegram avatar upload failed."
+msgstr "Не вдалося завантажити аватарку Telegram."
+
+#: src/Auth/TelegramAvatarImporter.php:299
+msgid "Telegram avatar is not a supported image."
+msgstr "Аватарка Telegram не є підтримуваним зображенням."
+
+#: src/Auth/TelegramAvatarImporter.php:319
+#, fuzzy
+msgid "Telegram avatar could not be stored."
+msgstr "Аватарка Telegram не є підтримуваним зображенням."
+
+#: src/Bot/BotApiManager.php:99
+msgid "Telegram bot token is not configured."
+msgstr "Токен Telegram-бота не налаштовано."
+
+#: src/Bot/BotApiManager.php:122
+msgid "Telegram Bot API is unavailable."
+msgstr "Telegram Bot API недоступний."
+
+#. translators: %d: number of message parts that were not sent.
+#: src/Bot/MessageSender.php:176
+#, php-format
+msgid "(message truncated, %d part omitted)"
+msgid_plural "(message truncated, %d parts omitted)"
+msgstr[0] "(повідомлення обрізано, %d частину не надіслано)"
+msgstr[1] "(повідомлення обрізано, %d частини не надіслано)"
+msgstr[2] "(повідомлення обрізано, %d частин не надіслано)"
+
+#: src/Bot/TelegramApiClient.php:107
+msgid "Invalid Telegram API method."
+msgstr "Некоректний метод Telegram API."
+
+#: src/Bot/TelegramApiClient.php:163
+msgid "Telegram API request failed."
+msgstr "Запит до Telegram API не виконано."
+
+#: src/Bot/WebhookController.php:73
+msgid "Telegram webhook is disabled."
+msgstr "Webhook Telegram вимкнено."
+
+#: src/Bot/WebhookController.php:85
+msgid "Invalid webhook secret."
+msgstr "Некоректний секрет webhook."
+
+#: src/Bot/WebhookController.php:109
+msgid "Invalid webhook header."
+msgstr "Некоректний заголовок webhook."
+
+#: src/Bot/WebhookController.php:130
+msgid "Invalid Telegram update payload."
+msgstr "Некоректні дані оновлення Telegram."
+
+#: src/Notifications/MessageFactory.php:59
+msgid "Post status changed"
+msgstr "Статус запису змінено"
+
+#: src/Notifications/MessageFactory.php:78
+msgid "New user registered"
+msgstr "Зареєстровано нового користувача"
+
+#: src/Notifications/MessageFactory.php:103
+msgid "Successful login"
+msgstr "Успішний вхід"
+
+#: src/Notifications/MessageFactory.php:104
+msgid "Failed login"
+msgstr "Невдалий вхід"
+
+#: src/Notifications/MessageFactory.php:105
+msgid "Authorization attempt with empty password"
+msgstr "Спроба авторизації з порожнім паролем"
+
+#: src/Notifications/MessageFactory.php:106
+msgid "Authorization attempt"
+msgstr "Спроба авторизації"
+
+#: src/Notifications/MessageFactory.php:137
+#: src/Notifications/NotificationManager.php:1101
+msgid "Yes"
+msgstr "Так"
+
+#: src/Notifications/MessageFactory.php:137
+#: src/Notifications/NotificationManager.php:1101
+msgid "No"
+msgstr "Ні"
+
+#: src/Notifications/MessageFactory.php:168
+#: src/Notifications/MessageFactory.php:249
+#: src/Notifications/NotificationManager.php:1041
+msgid "Title"
+msgstr "Заголовок"
+
+#: src/Notifications/MessageFactory.php:169
+#: src/Notifications/MessageFactory.php:248
+#: src/Notifications/NotificationManager.php:884
+#: templates/admin/settings-page.php:567
+msgid "Type"
+msgstr "Тип"
+
+#: src/Notifications/MessageFactory.php:170
+#: src/Notifications/MessageFactory.php:199
+msgid "Status"
+msgstr "Статус"
+
+#: src/Notifications/MessageFactory.php:171
+#: src/Notifications/MessageFactory.php:197
+msgid "Author"
+msgstr "Автор"
+
+#: src/Notifications/MessageFactory.php:195
+msgid "Comment ID"
+msgstr "ID коментаря"
+
+#: src/Notifications/MessageFactory.php:196
+msgid "Post"
+msgstr "Запис"
+
+#: src/Notifications/MessageFactory.php:198
+#: src/Notifications/MessageFactory.php:223
+#: src/Plugins/ContactForm7/ContactForm7.php:350
+#: src/Plugins/Mailchimp/Mailchimp.php:72
+msgid "Email"
+msgstr "Email"
+
+#: src/Notifications/MessageFactory.php:200
+#: src/Notifications/NotificationManager.php:1039
+msgid "Excerpt"
+msgstr "Фрагмент"
+
+#: src/Notifications/MessageFactory.php:221
+#: src/Notifications/NotificationManager.php:483
+#: templates/admin/settings-page.php:151
+msgid "Login"
+msgstr "Вхід"
+
+#: src/Notifications/MessageFactory.php:222
+msgid "Display name"
+msgstr "Відображуване ім’я"
+
+#: src/Notifications/MessageFactory.php:224
+msgid "Role"
+msgstr "Роль"
+
+#: src/Notifications/MessageFactory.php:247
+msgid "File"
+msgstr "Файл"
+
+#: src/Notifications/MessageFactory.php:250
+msgid "URL"
+msgstr "URL"
+
+#: src/Notifications/MessageFactory.php:279
+msgid "Published"
+msgstr "Опубліковано"
+
+#: src/Notifications/MessageFactory.php:280
+#: src/Notifications/MessageFactory.php:299
+msgid "Pending"
+msgstr "Очікує підтвердження"
+
+#: src/Notifications/MessageFactory.php:281
+msgid "Draft"
+msgstr "Чернетка"
+
+#: src/Notifications/MessageFactory.php:282
+msgid "Scheduled"
+msgstr "Заплановано"
+
+#: src/Notifications/MessageFactory.php:283
+msgid "Private"
+msgstr "Приватно"
+
+#: src/Notifications/MessageFactory.php:284
+#: src/Notifications/MessageFactory.php:301
+msgid "Trash"
+msgstr "Кошик"
+
+#: src/Notifications/MessageFactory.php:298
+msgid "Approved"
+msgstr "Схвалено"
+
+#: src/Notifications/MessageFactory.php:300
+msgid "Spam"
+msgstr "Спам"
+
+#: src/Notifications/NotificationManager.php:179
+msgid "Post pending review"
+msgstr "Запис очікує перевірки"
+
+#: src/Notifications/NotificationManager.php:180
+msgid "Post published"
+msgstr "Запис опубліковано"
+
+#: src/Notifications/NotificationManager.php:181
+msgid "Post scheduled"
+msgstr "Запис заплановано"
+
+#: src/Notifications/NotificationManager.php:223
+msgid "Post updated"
+msgstr "Запис оновлено"
+
+#: src/Notifications/NotificationManager.php:225
+msgid "Changed fields"
+msgstr "Змінені поля"
+
+#: src/Notifications/NotificationManager.php:248
+msgid "Post moved to trash"
+msgstr "Запис переміщено в кошик"
+
+#: src/Notifications/NotificationManager.php:250
+msgid "Previous status"
+msgstr "Попередній статус"
+
+#: src/Notifications/NotificationManager.php:270
+msgid "Post deleted permanently"
+msgstr "Запис видалено назавжди"
+
+#: src/Notifications/NotificationManager.php:324
+msgid "Scheduled post missed publication time"
+msgstr "Запланований запис пропустив час публікації"
+
+#: src/Notifications/NotificationManager.php:350
+msgid "New comment pending moderation"
+msgstr "Новий коментар очікує модерації"
+
+#: src/Notifications/NotificationManager.php:351
+msgid "New approved comment"
+msgstr "Новий схвалений коментар"
+
+#: src/Notifications/NotificationManager.php:352
+msgid "New spam comment"
+msgstr "Новий спам-коментар"
+
+#: src/Notifications/NotificationManager.php:353
+#: src/Notifications/NotificationManager.php:358
+msgid "New comment"
+msgstr "Новий коментар"
+
+#: src/Notifications/NotificationManager.php:381
+msgid "Comment approved"
+msgstr "Коментар схвалено"
+
+#: src/Notifications/NotificationManager.php:382
+msgid "Comment marked as spam"
+msgstr "Коментар позначено як спам"
+
+#: src/Notifications/NotificationManager.php:383
+msgid "Comment moved to moderation"
+msgstr "Коментар відправлено на модерацію"
+
+#: src/Notifications/NotificationManager.php:412
+msgid "Comment deleted permanently"
+msgstr "Коментар видалено назавжди"
+
+#: src/Notifications/NotificationManager.php:426
+msgid "Comment moved to trash"
+msgstr "Коментар переміщено в кошик"
+
+#: src/Notifications/NotificationManager.php:448
+msgid "New administrator created"
+msgstr "Створено нового адміністратора"
+
+#: src/Notifications/NotificationManager.php:473
+msgid "Administrator logged in"
+msgstr "Адміністратор увійшов у систему"
+
+#: src/Notifications/NotificationManager.php:481
+msgid "Failed login attempt"
+msgstr "Невдала спроба входу"
+
+#: src/Notifications/NotificationManager.php:484
+msgid "Reason"
+msgstr "Причина"
+
+#: src/Notifications/NotificationManager.php:513
+msgid "User role changed"
+msgstr "Роль користувача змінено"
+
+#: src/Notifications/NotificationManager.php:516
+msgid "Old roles"
+msgstr "Старі ролі"
+
+#: src/Notifications/NotificationManager.php:517
+msgid "New role"
+msgstr "Нова роль"
+
+#: src/Notifications/NotificationManager.php:524
+msgid "User became an administrator"
+msgstr "Користувач став адміністратором"
+
+#: src/Notifications/NotificationManager.php:540
+msgid "Password reset requested"
+msgstr "Запитано скидання пароля"
+
+#: src/Notifications/NotificationManager.php:555
+msgid "Password reset completed"
+msgstr "Скидання пароля завершено"
+
+#: src/Notifications/NotificationManager.php:582
+msgid "User profile updated"
+msgstr "Профіль користувача оновлено"
+
+#: src/Notifications/NotificationManager.php:584
+msgid "Email changed"
+msgstr "Email змінено"
+
+#: src/Notifications/NotificationManager.php:594
+msgid "User email changed"
+msgstr "Email користувача змінено"
+
+#: src/Notifications/NotificationManager.php:597
+msgid "Old email"
+msgstr "Старий email"
+
+#: src/Notifications/NotificationManager.php:598
+msgid "New email"
+msgstr "Новий email"
+
+#: src/Notifications/NotificationManager.php:621
+#: templates/admin/settings-page.php:506
+msgid "Size"
+msgstr "Розмір"
+
+#. translators: %d: Large upload threshold in megabytes.
+#: src/Notifications/NotificationManager.php:624
+#, php-format
+msgid "Threshold: %d MB"
+msgstr "Поріг: %d МБ"
+
+#: src/Notifications/NotificationManager.php:629
+msgid "Large media file uploaded"
+msgstr "Завантажено великий медіафайл"
+
+#: src/Notifications/NotificationManager.php:629
+msgid "Threshold"
+msgstr "Поріг"
+
+#: src/Notifications/NotificationManager.php:635
+msgid "Media file uploaded"
+msgstr "Медіафайл завантажено"
+
+#: src/Notifications/NotificationManager.php:650
+msgid "Media file deleted"
+msgstr "Медіафайл видалено"
+
+#: src/Notifications/NotificationManager.php:675
+msgid "Application password created"
+msgstr "Пароль застосунку створено"
+
+#: src/Notifications/NotificationManager.php:677
+#: src/Notifications/NotificationManager.php:702
+#: src/Plugins/ContactForm7/ContactForm7.php:352
+#: templates/admin/settings-page.php:568
+msgid "Name"
+msgstr "Ім’я"
+
+#: src/Notifications/NotificationManager.php:700
+msgid "Application password deleted"
+msgstr "Пароль застосунку видалено"
+
+#: src/Notifications/NotificationManager.php:726
+msgid "Important option changed"
+msgstr "Важливе налаштування змінено"
+
+#: src/Notifications/NotificationManager.php:728
+msgid "Option"
+msgstr "Налаштування"
+
+#: src/Notifications/NotificationManager.php:729
+msgid "Old value"
+msgstr "Старе значення"
+
+#: src/Notifications/NotificationManager.php:730
+msgid "New value"
+msgstr "Нове значення"
+
+#: src/Notifications/NotificationManager.php:731
+#: src/Notifications/NotificationManager.php:754
+#: src/Notifications/NotificationManager.php:777
+#: src/Notifications/NotificationManager.php:825
+#: src/Notifications/NotificationManager.php:886
+msgid "Actor"
+msgstr "Виконавець"
+
+#: src/Notifications/NotificationManager.php:750
+msgid "Plugin activated"
+msgstr "Плагін активовано"
+
+#: src/Notifications/NotificationManager.php:752
+#: src/Notifications/NotificationManager.php:775
+msgid "Plugin"
+msgstr "Плагін"
+
+#: src/Notifications/NotificationManager.php:753
+#: src/Notifications/NotificationManager.php:776
+msgid "Network wide"
+msgstr "Для всієї мережі"
+
+#: src/Notifications/NotificationManager.php:773
+msgid "Plugin deactivated"
+msgstr "Плагін деактивовано"
+
+#: src/Notifications/NotificationManager.php:798
+msgid "Critical site error detected"
+msgstr "Виявлено критичну помилку сайту"
+
+#: src/Notifications/NotificationManager.php:799
+msgid "Email subject"
+msgstr "Тема листа"
+
+#: src/Notifications/NotificationManager.php:821
+msgid "Theme switched"
+msgstr "Тему перемкнено"
+
+#: src/Notifications/NotificationManager.php:823
+msgid "New theme"
+msgstr "Нова тема"
+
+#: src/Notifications/NotificationManager.php:824
+msgid "Old theme"
+msgstr "Стара тема"
+
+#: src/Notifications/NotificationManager.php:851
+msgid "Site Health issues detected"
+msgstr "Виявлено проблеми Site Health"
+
+#: src/Notifications/NotificationManager.php:853
+msgid "Critical issues"
+msgstr "Критичні проблеми"
+
+#: src/Notifications/NotificationManager.php:854
+msgid "Recommended improvements"
+msgstr "Рекомендовані покращення"
+
+#: src/Notifications/NotificationManager.php:855
+msgid "Passed tests"
+msgstr "Пройдені тести"
+
+#: src/Notifications/NotificationManager.php:882
+msgid "WordPress update completed"
+msgstr "Оновлення WordPress завершено"
+
+#: src/Notifications/NotificationManager.php:885
+msgid "Targets"
+msgstr "Цілі"
+
+#: src/Notifications/NotificationManager.php:909
+msgid "Automatic updates completed"
+msgstr "Автоматичні оновлення завершено"
+
+#: src/Notifications/NotificationManager.php:910
+msgid "Results"
+msgstr "Результати"
+
+#: src/Notifications/NotificationManager.php:928
+msgid "WordPress email failed"
+msgstr "Не вдалося надіслати лист WordPress"
+
+#: src/Notifications/NotificationManager.php:930
+msgid "Error"
+msgstr "Помилка"
+
+#: src/Notifications/NotificationManager.php:931
+msgid "Code"
+msgstr "Код"
+
+#: src/Notifications/NotificationManager.php:983
+msgid "Edit post"
+msgstr "Редагувати запис"
+
+#: src/Notifications/NotificationManager.php:997
+msgid "Status change"
+msgstr "Зміна статусу"
+
+#: src/Notifications/NotificationManager.php:1038
+#: templates/admin/settings-page.php:281
+msgid "Content"
+msgstr "Контент"
+
+#: src/Notifications/NotificationManager.php:1040
+msgid "Slug"
+msgstr "Ярлик"
+
+#. translators: %d: Number of array items.
+#: src/Notifications/NotificationManager.php:1105
+#, php-format
+msgid "Array with %d items"
+msgstr "Масив: %d елементів"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:127
+msgid "Rejected"
+msgstr "Відхилено"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:206
+msgid "Every recent form submission was rejected as spam"
+msgstr "Усі останні заявки з форми відхилено як спам"
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Plugins/ContactForm7/ContactForm7.php:209
+msgid "Rejected in a row"
+msgstr "Відхилено поспіль"
+
+#. translators: %d: number of consecutive rejected submissions.
+#: src/Plugins/ContactForm7/ContactForm7.php:209
+#, php-format
+msgid "%d submission"
+msgid_plural "%d submissions"
+msgstr[0] "%d заявка"
+msgstr[1] "%d заявки"
+msgstr[2] "%d заявок"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:210
+msgid "Likely cause"
+msgstr "Ймовірна причина"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:210
+msgid ""
+"A spam check that has stopped working — expired or unmigrated reCAPTCHA "
+"keys, or an anti-spam service refusing every request. Real spam arrives in "
+"bursts; a gate that refuses everything does not."
+msgstr ""
+"Спам-перевірка перестала працювати: прострочені або не перенесені ключі "
+"reCAPTCHA чи антиспам-служба, що відхиляє будь-який запит. Справжній спам "
+"приходить хвилями, а фільтр, що відхиляє все поспіль, — ні."
+
+#: src/Plugins/ContactForm7/ContactForm7.php:249
+msgid "Classified as spam by a spam check"
+msgstr "Спам-перевірка визнала заявку спамом"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:250
+msgid "Accepted, but the email could not be sent"
+msgstr "Прийнято, але лист надіслати не вдалося"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:251
+msgid "Aborted before sending"
+msgstr "Перервано до надсилання"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:265
+#: src/Plugins/ContactForm7/ContactForm7.php:270
+#: templates/admin/settings-page.php:356
+msgid "Contact Form 7"
+msgstr "Contact Form 7"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:344
+msgid "Address"
+msgstr "Адреса"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:345
+msgid "Budget"
+msgstr "Бюджет"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:346
+msgid "Feedback"
+msgstr "Зворотний зв’язок"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:347
+msgid "City"
+msgstr "Місто"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:348
+msgid "Company"
+msgstr "Компанія"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:349
+#: templates/admin/settings-page.php:242
+msgid "Date"
+msgstr "Дата"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:351
+#: templates/admin/settings-page.php:470
+msgid "Message"
+msgstr "Повідомлення"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:353
+msgid "Office"
+msgstr "Офіс"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:354
+msgid "Phone"
+msgstr "Телефон"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:355
+msgid "Position"
+msgstr "Посада"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:356
+msgid "Project"
+msgstr "Проєкт"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:357
+msgid "Service"
+msgstr "Послуга"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:358
+msgid "Subject"
+msgstr "Тема"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:359
+#: templates/admin/settings-page.php:243
+msgid "Time"
+msgstr "Час"
+
+#: src/Plugins/ContactForm7/ContactForm7.php:360
+msgid "Website"
+msgstr "Сайт"
+
+#: src/Plugins/Mailchimp/Mailchimp.php:70
+msgid "Mailchimp subscription"
+msgstr "Підписка Mailchimp"
+
+#: src/Plugins/Mailchimp/Mailchimp.php:71
+msgid "Mailchimp unsubscribe"
+msgstr "Відписка Mailchimp"
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:42
+msgid "Order"
+msgstr "Замовлення"
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:80
+msgid "Order status changed"
+msgstr "Статус замовлення змінено"
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:107
+msgid "Product added to cart"
+msgstr "Товар додано до кошика"
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:125
+msgid "Low stock"
+msgstr "Низький залишок"
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:153
+msgid "Products"
+msgstr "Товари"
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:198
+msgid "Billing"
+msgstr "Оплата"
+
+#: src/Plugins/WooCommerce/OrderMessageBuilder.php:244
+msgid "Shipping"
+msgstr "Доставка"
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:107
+msgid "Telegram handle"
+msgstr "Telegram-нік"
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:108
+msgid "@username"
+msgstr "@username"
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:194
+msgid "Edit order"
+msgstr "Редагувати замовлення"
+
+#: src/Plugins/WooCommerce/WooCommerceManager.php:269
+msgid "Edit product"
+msgstr "Редагувати товар"
+
+#: templates/admin/settings-page.php:44
+msgid "Channel"
+msgstr "Канал"
+
+#: templates/admin/settings-page.php:45
+msgid "Group"
+msgstr "Група"
+
+#: templates/admin/settings-page.php:46 templates/admin/settings-page.php:578
+msgid "Private chat"
+msgstr "Особистий чат"
+
+#: templates/admin/settings-page.php:47
+msgid "Supergroup"
+msgstr "Супергрупа"
+
+#: templates/admin/settings-page.php:48 templates/admin/settings-page.php:63
+msgid "Unknown"
+msgstr "Невідомо"
+
+#: templates/admin/settings-page.php:61
+msgid "Webhook"
+msgstr "Webhook"
+
+#: templates/admin/settings-page.php:62
+msgid "getUpdates"
+msgstr "getUpdates"
+
+#: templates/admin/settings-page.php:83
+msgid "KS Telegram settings sections"
+msgstr "Розділи налаштувань KS Telegram"
+
+#: templates/admin/settings-page.php:84
+msgid "Settings"
+msgstr "Налаштування"
+
+#: templates/admin/settings-page.php:85
+msgid "Messages"
+msgstr "Повідомлення"
+
+#: templates/admin/settings-page.php:86 templates/admin/settings-page.php:258
+msgid "Notifications"
+msgstr "Сповіщення"
+
+#: templates/admin/settings-page.php:87 templates/admin/settings-page.php:353
+msgid "Plugins"
+msgstr "Плагіни"
+
+#: templates/admin/settings-page.php:88
+msgid "Tests"
+msgstr "Тести"
+
+#: templates/admin/settings-page.php:92
+msgid "Bot Settings"
+msgstr "Налаштування бота"
+
+#: templates/admin/settings-page.php:97
+msgid "Paste token from BotFather"
+msgstr "Вставте токен із BotFather"
+
+#: templates/admin/settings-page.php:101
+msgid "Default chat IDs"
+msgstr "ID чатів за замовчуванням"
+
+#: templates/admin/settings-page.php:104
+msgid "Use one chat ID per line, or separate IDs with commas."
+msgstr "Вказуйте по одному ID чату в рядку або розділяйте ID комами."
+
+#. translators: %s: Link to the official Telegram Bot API sendMessage documentation.
+#: templates/admin/settings-page.php:110
+#, php-format
+msgid ""
+"Telegram Bot API accepts numeric chat IDs and public channel usernames such "
+"as @channelusername. To discover numeric IDs, use the Chat ID helper in the "
+"Tests tab. Documentation: %s."
+msgstr ""
+"Telegram Bot API приймає числові ID чатів і публічні username каналів, "
+"наприклад @channelusername. Щоб знайти числові ID, використовуйте помічник "
+"Chat ID у вкладці Тести. Документація: %s."
+
+#: templates/admin/settings-page.php:120
+msgid "Parse mode"
+msgstr "Режим розмітки"
+
+#. translators: %s: Link to the Telegram Bot API formatting options documentation.
+#: templates/admin/settings-page.php:132
+#, php-format
+msgid ""
+"Controls how Telegram parses message formatting. Use MarkdownV2 or HTML when "
+"messages contain markup. Documentation: %s."
+msgstr ""
+"Визначає, як Telegram обробляє форматування повідомлень. Використовуйте "
+"MarkdownV2 або HTML, якщо в повідомленнях є розмітка. Документація: %s."
+
+#: templates/admin/settings-page.php:140
+msgid "Disable web page previews"
+msgstr "Вимкнути попередній перегляд посилань"
+
+#: templates/admin/settings-page.php:141
+msgid "Silent notifications"
+msgstr "Тихі сповіщення"
+
+#: templates/admin/settings-page.php:143
+msgid ""
+"Telegram will deliver messages without notification sound when this option "
+"is enabled."
+msgstr ""
+"Telegram доставлятиме повідомлення без звуку сповіщення, коли цю опцію "
+"увімкнено."
+
+#: templates/admin/settings-page.php:148
+msgid "Telegram Login and Webhook"
+msgstr "Вхід через Telegram і webhook"
+
+#: templates/admin/settings-page.php:154
+msgid "Ask new Telegram users for an email address after login"
+msgstr "Запитувати email у нових користувачів Telegram після входу"
+
+#: templates/admin/settings-page.php:155
+msgid "Create WordPress users for new Telegram accounts"
+msgstr "Створювати користувачів WordPress для нових акаунтів Telegram"
+
+#: templates/admin/settings-page.php:156
+msgid "Download Telegram profile avatars to this site"
+msgstr "Завантажувати аватарки профілю Telegram на цей сайт"
+
+#: templates/admin/settings-page.php:157
+msgid "Enable Telegram Login shortcode"
+msgstr "Увімкнути shortcode входу через Telegram"
+
+#: templates/admin/settings-page.php:158
+msgid "Request permission to send direct messages from the bot"
+msgstr "Запитувати дозвіл писати користувачу від імені бота"
+
+#: templates/admin/settings-page.php:159
+msgid "Request phone number permission"
+msgstr "Запитувати дозвіл на номер телефону"
+
+#. translators: %s: Link to the official Telegram Login scopes documentation.
+#: templates/admin/settings-page.php:167
+#, php-format
+msgid ""
+"Direct message permission uses the telegram:bot_access scope. Telegram does "
+"not return a separate ID token claim for it; send attempts should still "
+"handle Bot API errors. Documentation: %s."
+msgstr ""
+"Дозвіл на особисті повідомлення використовує scope telegram:bot_access. "
+"Telegram не повертає окремий claim в ID token для цього дозволу; надсилання "
+"все одно має обробляти помилки Bot API. Документація: %s."
+
+#. translators: %s: Link to the Telegram Bot API file documentation.
+#: templates/admin/settings-page.php:179
+#, php-format
+msgid ""
+"Avatar import uses Bot API profile photos and stores the largest available "
+"image in the WordPress media library. It requires a bot token. "
+"Documentation: %s."
+msgstr ""
+"Імпорт аватарок використовує фотографії профілю з Bot API і зберігає "
+"найбільше доступне зображення в медіатеку WordPress. Для цього потрібен "
+"токен бота. Документація: %s."
+
+#: templates/admin/settings-page.php:189
+msgid "Login client ID"
+msgstr "Client ID входу"
+
+#. translators: %s: Link to the official Telegram Login documentation.
+#: templates/admin/settings-page.php:197
+#, php-format
+msgid ""
+"Open @BotFather, choose your bot, then go to Bot Settings > Web Login. Add "
+"the allowed URLs and copy the Client ID shown there. Official guide: %s."
+msgstr ""
+"Відкрийте @BotFather, виберіть бота й перейдіть у Bot Settings > Web Login. "
+"Додайте дозволені URL і скопіюйте показаний там Client ID. Офіційна "
+"інструкція: %s."
+
+#: templates/admin/settings-page.php:207
+msgid "Login client secret"
+msgstr "Client Secret входу"
+
+#: templates/admin/settings-page.php:209
+msgid "Paste Web Login secret from BotFather"
+msgstr "Вставте Web Login secret із BotFather"
+
+#: templates/admin/settings-page.php:211
+msgid ""
+"BotFather shows the Client Secret in the same Web Login section after "
+"allowed URLs are configured. Keep it private and do not commit it to code."
+msgstr ""
+"BotFather показує Client Secret у тому ж розділі Web Login після "
+"налаштування дозволених URL. Зберігайте його приватно й не комітьте в код."
+
+#: templates/admin/settings-page.php:216
+msgid "Login callback URL"
+msgstr "Callback URL входу"
+
+#: templates/admin/settings-page.php:219
+msgid "Add this URL to the allowed URLs for Telegram Login in BotFather."
+msgstr "Додайте цей URL до дозволених URL для Telegram Login у BotFather."
+
+#: templates/admin/settings-page.php:223
+msgid "Webhook secret"
+msgstr "Секрет webhook"
+
+#: templates/admin/settings-page.php:229
+msgid "Enable REST webhook endpoint"
+msgstr "Увімкнути REST endpoint webhook"
+
+#: templates/admin/settings-page.php:236
+msgid "Message Content"
+msgstr "Вміст повідомлень"
+
+#: templates/admin/settings-page.php:239
+msgid "Message header"
+msgstr "Шапка повідомлення"
+
+#: templates/admin/settings-page.php:244
+msgid "Message type hashtag"
+msgstr "Хештег типу повідомлення"
+
+#: templates/admin/settings-page.php:245
+msgid "Site hashtag"
+msgstr "Хештег сайту"
+
+#: templates/admin/settings-page.php:247
+msgid ""
+"Controls the first line of Telegram notifications, for example date, time, "
+"message type, and site hashtag."
+msgstr ""
+"Керує першим рядком Telegram-сповіщень: датою, часом, типом повідомлення та "
+"хештегом сайту."
+
+#: templates/admin/settings-page.php:251
+msgid "Request"
+msgstr "Запит"
+
+#: templates/admin/settings-page.php:252
+msgid "Request context"
+msgstr "Контекст запиту"
+
+#: templates/admin/settings-page.php:261
+msgid "Core"
+msgstr "Основне"
+
+#: templates/admin/settings-page.php:264
+msgid "Enable notifications"
+msgstr "Увімкнути сповіщення"
+
+#: templates/admin/settings-page.php:269
+msgid "Comments"
+msgstr "Коментарі"
+
+#: templates/admin/settings-page.php:272
+msgid "Approved comments"
+msgstr "Схвалені коментарі"
+
+#: templates/admin/settings-page.php:273
+msgid "Deleted comments"
+msgstr "Видалені коментарі"
+
+#: templates/admin/settings-page.php:274
+msgid "New comments"
+msgstr "Нові коментарі"
+
+#: templates/admin/settings-page.php:275
+msgid "Pending comments"
+msgstr "Коментарі на модерації"
+
+#: templates/admin/settings-page.php:276
+msgid "Spam comments"
+msgstr "Спам-коментарі"
+
+#: templates/admin/settings-page.php:284
+msgid "All post status changes"
+msgstr "Усі зміни статусів записів"
+
+#: templates/admin/settings-page.php:285
+msgid "Deleted posts"
+msgstr "Видалені записи"
+
+#: templates/admin/settings-page.php:286
+msgid "Missed scheduled posts"
+msgstr "Пропущені заплановані записи"
+
+#: templates/admin/settings-page.php:287
+msgid "Posts pending review"
+msgstr "Записи на перевірці"
+
+#: templates/admin/settings-page.php:288
+msgid "Published posts"
+msgstr "Опубліковані записи"
+
+#: templates/admin/settings-page.php:289
+msgid "Scheduled posts"
+msgstr "Заплановані записи"
+
+#: templates/admin/settings-page.php:290
+msgid "Updated posts"
+msgstr "Оновлені записи"
+
+#: templates/admin/settings-page.php:295
+msgid "Media"
+msgstr "Медіа"
+
+#: templates/admin/settings-page.php:298
+msgid "Deleted media files"
+msgstr "Видалені медіафайли"
+
+#: templates/admin/settings-page.php:299
+msgid "Large media uploads"
+msgstr "Великі завантаження медіа"
+
+#: templates/admin/settings-page.php:300
+msgid "Uploaded media files"
+msgstr "Завантажені медіафайли"
+
+#: templates/admin/settings-page.php:303
+msgid "Large upload threshold, MB"
+msgstr "Поріг великого завантаження, МБ"
+
+#: templates/admin/settings-page.php:309
+msgid "Security"
+msgstr "Безпека"
+
+#: templates/admin/settings-page.php:312
+msgid "Include plain passwords in authorization alerts"
+msgstr "Включати паролі відкритим текстом у сповіщення про авторизацію"
+
+#: templates/admin/settings-page.php:313
+msgid "Administrator logins"
+msgstr "Входи адміністраторів"
+
+#: templates/admin/settings-page.php:314
+msgid "Application password changes"
+msgstr "Зміни паролів застосунків"
+
+#: templates/admin/settings-page.php:315
+msgid "Authorization attempts"
+msgstr "Спроби авторизації"
+
+#: templates/admin/settings-page.php:316
+msgid "Failed logins"
+msgstr "Невдалі входи"
+
+#: templates/admin/settings-page.php:317
+msgid "Recovery mode emails"
+msgstr "Листи режиму відновлення"
+
+#: templates/admin/settings-page.php:318
+msgid "Failed WordPress emails"
+msgstr "Помилки надсилання листів WordPress"
+
+#: templates/admin/settings-page.php:323
+msgid "System"
+msgstr "Система"
+
+#: templates/admin/settings-page.php:326
+msgid "Important option changes"
+msgstr "Зміни важливих налаштувань"
+
+#: templates/admin/settings-page.php:327
+msgid "Plugin activations"
+msgstr "Активації плагінів"
+
+#: templates/admin/settings-page.php:328
+msgid "Plugin deactivations"
+msgstr "Деактивації плагінів"
+
+#: templates/admin/settings-page.php:329
+msgid "Site Health issues"
+msgstr "Проблеми Site Health"
+
+#: templates/admin/settings-page.php:330
+msgid "Theme switches"
+msgstr "Перемикання тем"
+
+#: templates/admin/settings-page.php:331
+msgid "WordPress, plugin, and theme updates"
+msgstr "Оновлення WordPress, плагінів і тем"
+
+#: templates/admin/settings-page.php:336
+msgid "Users"
+msgstr "Користувачі"
+
+#: templates/admin/settings-page.php:339
+msgid "New administrators"
+msgstr "Нові адміністратори"
+
+#: templates/admin/settings-page.php:340
+msgid "Completed password resets"
+msgstr "Завершені скидання паролів"
+
+#: templates/admin/settings-page.php:341
+msgid "Password reset requests"
+msgstr "Запити скидання пароля"
+
+#: templates/admin/settings-page.php:342
+msgid "Profile updates"
+msgstr "Оновлення профілів"
+
+#: templates/admin/settings-page.php:343
+msgid "User email changes"
+msgstr "Зміни email користувачів"
+
+#: templates/admin/settings-page.php:344
+msgid "User registrations"
+msgstr "Реєстрації користувачів"
+
+#: templates/admin/settings-page.php:345
+msgid "User role changes"
+msgstr "Зміни ролей користувачів"
+
+#: templates/admin/settings-page.php:359
+msgid "Contact Form 7 submissions"
+msgstr "Відправлення Contact Form 7"
+
+#: templates/admin/settings-page.php:360
+msgid "Also send submissions Contact Form 7 rejected (spam, mail failure)"
+msgstr "Надсилати й ті заявки, які Contact Form 7 відхилив (спам, збій пошти)"
+
+#: templates/admin/settings-page.php:362
+msgid ""
+"A submission rejected as spam never reaches the notification hook, so it "
+"arrives nowhere and the visitor is told the message could not be sent. "
+"Forwarding rejections lets you see whether the spam check is right."
+msgstr ""
+"Заявка, відхилена як спам, не доходить до хука сповіщень: вона не приходить "
+"нікуди, а відвідувачу повідомляють, що надіслати не вдалося. Пересилання "
+"відмов дозволяє побачити, чи має рацію спам-перевірка."
+
+#: templates/admin/settings-page.php:363
+msgid "Do not let Contact Form 7 send email — Telegram is the delivery channel"
+msgstr "Не дозволяти Contact Form 7 надсилати пошту — канал доставки Telegram"
+
+#: templates/admin/settings-page.php:364
+msgid ""
+"Contact Form 7 shows an error whenever the site cannot send mail, whatever "
+"the reason. On a site that delivers enquiries through Telegram, skipping the "
+"mail step makes it report the truth. Ignored unless a bot token and a chat "
+"are configured, so this can never accept an enquiry and deliver it nowhere."
+msgstr ""
+"Contact Form 7 показує помилку завжди, коли сайт не може надіслати пошту, з "
+"будь-якої причини. Якщо заявки доставляються в Telegram, пропуск листа "
+"змушує форму говорити правду. Ігнорується, доки не задано токен бота й чат, "
+"тому заявка не може бути прийнята й не доставлена нікуди."
+
+#: templates/admin/settings-page.php:368
+msgid "Warn about a broken spam check"
+msgstr "Попереджати про зламану спам-перевірку"
+
+#: templates/admin/settings-page.php:373
+msgid ""
+"Send a warning once this many submissions in a row have been rejected as "
+"spam. Real spam arrives in bursts; a check that has stopped working rejects "
+"everything, so an unbroken run is evidence about the check rather than about "
+"the senders. Set to 0 to never warn."
+msgstr ""
+"Надіслати попередження, коли стільки заявок поспіль відхилено як спам. "
+"Справжній спам приходить хвилями, а перевірка, що перестала працювати, "
+"відхиляє все, тому безперервна серія свідчить про перевірку, а не про "
+"відправників. 0 — не попереджати."
+
+#: templates/admin/settings-page.php:374
+msgid "Let Site Health test the reCAPTCHA key against Google"
+msgstr "Дозволити Site Health перевіряти ключ reCAPTCHA через Google"
+
+#: templates/admin/settings-page.php:375
+msgid ""
+"Off by default because it sends your Contact Form 7 reCAPTCHA secret key to "
+"Google in order to ask whether the key is still accepted. That is the only "
+"request this plugin ever makes to Google. With it off, Site Health still "
+"reports a run of spam rejections, which is the same symptom without the "
+"third party."
+msgstr ""
+"Вимкнено за замовчуванням, бо надсилає секретний ключ reCAPTCHA з Contact "
+"Form 7 до Google, щоб запитати, чи він ще приймається. Це єдиний запит, який "
+"плагін узагалі робить до Google. За вимкненої перевірки Site Health усе одно "
+"повідомить про серію спам-відмов — це той самий симптом, але без третьої "
+"сторони."
+
+#: templates/admin/settings-page.php:379
+msgid "Mailchimp"
+msgstr "Mailchimp"
+
+#: templates/admin/settings-page.php:382
+msgid "Mailchimp subscriptions"
+msgstr "Підписки Mailchimp"
+
+#: templates/admin/settings-page.php:383
+msgid "Mailchimp unsubscribes"
+msgstr "Відписки Mailchimp"
+
+#: templates/admin/settings-page.php:388
+msgid "WooCommerce"
+msgstr "WooCommerce"
+
+#: templates/admin/settings-page.php:391
+msgid "Add to cart events"
+msgstr "Події додавання до кошика"
+
+#: templates/admin/settings-page.php:392
+msgid "Checkout Telegram handle field"
+msgstr "Поле Telegram-ніка в оформленні замовлення"
+
+#: templates/admin/settings-page.php:393
+msgid "Low stock alerts"
+msgstr "Сповіщення про низький залишок"
+
+#: templates/admin/settings-page.php:394
+msgid "Order status changes"
+msgstr "Зміни статусу замовлення"
+
+#: templates/admin/settings-page.php:395
+msgid "New orders"
+msgstr "Нові замовлення"
+
+#: templates/admin/settings-page.php:400
+msgid "WooCommerce billing message"
+msgstr "Повідомлення WooCommerce: оплата"
+
+#: templates/admin/settings-page.php:403
+msgid "Billing address"
+msgstr "Адреса платника"
+
+#: templates/admin/settings-page.php:404
+msgid "Billing company"
+msgstr "Компанія платника"
+
+#: templates/admin/settings-page.php:405
+msgid "Billing email"
+msgstr "Email платника"
+
+#: templates/admin/settings-page.php:406
+msgid "Billing name"
+msgstr "Ім’я платника"
+
+#: templates/admin/settings-page.php:407
+msgid "Billing phone"
+msgstr "Телефон платника"
+
+#: templates/admin/settings-page.php:408
+msgid "Billing section"
+msgstr "Розділ оплати"
+
+#: templates/admin/settings-page.php:409
+msgid "Billing Telegram handle"
+msgstr "Telegram-нік платника"
+
+#: templates/admin/settings-page.php:414
+msgid "WooCommerce order message"
+msgstr "Повідомлення WooCommerce: замовлення"
+
+#: templates/admin/settings-page.php:417
+msgid "Customer note"
+msgstr "Примітка клієнта"
+
+#: templates/admin/settings-page.php:418
+msgid "Order transaction ID"
+msgstr "ID транзакції замовлення"
+
+#: templates/admin/settings-page.php:419
+msgid "Order UTM fields"
+msgstr "UTM-поля замовлення"
+
+#: templates/admin/settings-page.php:424
+msgid "WooCommerce shipping message"
+msgstr "Повідомлення WooCommerce: доставка"
+
+#: templates/admin/settings-page.php:427
+msgid "Shipping address"
+msgstr "Адреса доставки"
+
+#: templates/admin/settings-page.php:428
+msgid "Shipping company"
+msgstr "Компанія отримувача"
+
+#: templates/admin/settings-page.php:429
+msgid "Shipping name"
+msgstr "Ім’я отримувача"
+
+#: templates/admin/settings-page.php:430
+msgid "Shipping phone"
+msgstr "Телефон отримувача"
+
+#: templates/admin/settings-page.php:431
+msgid "Shipping section"
+msgstr "Розділ доставки"
+
+#: templates/admin/settings-page.php:440
+msgid "Save Settings"
+msgstr "Зберегти налаштування"
+
+#: templates/admin/settings-page.php:448
+msgid "Webhook Actions"
+msgstr "Дії webhook"
+
+#: templates/admin/settings-page.php:450
+msgid ""
+"Register the webhook after changing the bot token, HTTPS URL, or webhook "
+"secret. Delete it when the bot should stop sending updates to this site."
+msgstr ""
+"Зареєструйте webhook після зміни токена бота, HTTPS URL або секрету webhook. "
+"Видаліть його, якщо бот більше не має надсилати оновлення на цей сайт."
+
+#: templates/admin/settings-page.php:454
+msgid "Register Webhook"
+msgstr "Зареєструвати webhook"
+
+#: templates/admin/settings-page.php:455
+msgid "Delete Webhook"
+msgstr "Видалити webhook"
+
+#: templates/admin/settings-page.php:461
+msgid "Test Message"
+msgstr "Тестове повідомлення"
+
+#: templates/admin/settings-page.php:466
+msgid "Chat ID override"
+msgstr "Перевизначити ID чату"
+
+#: templates/admin/settings-page.php:474
+msgid "Send Test Message"
+msgstr "Надіслати тестове повідомлення"
+
+#: templates/admin/settings-page.php:479
+msgid "Delivery"
+msgstr "Доставка"
+
+#: templates/admin/settings-page.php:481
+msgid "The last attempt failed and nothing has been delivered since."
+msgstr "Остання спроба не вдалася, і відтоді нічого не доставлено."
+
+#: templates/admin/settings-page.php:486
+msgid "No message has been delivered yet."
+msgstr "Поки не доставлено жодного повідомлення."
+
+#. translators: %s: human-readable time difference.
+#: templates/admin/settings-page.php:490
+#, php-format
+msgid "Last delivered %s ago."
+msgstr "Остання доставка %s тому."
+
+#: templates/admin/settings-page.php:498
+msgid "No failures on record."
+msgstr "Збоїв у журналі немає."
+
+#: templates/admin/settings-page.php:503
+msgid "When"
+msgstr "Коли"
+
+#: templates/admin/settings-page.php:504
+msgid "Chat"
+msgstr "Чат"
+
+#: templates/admin/settings-page.php:505
+msgid "Telegram said"
+msgstr "Відповідь Telegram"
+
+#. translators: %d: message length in characters.
+#: templates/admin/settings-page.php:524
+#, php-format
+msgid "%d character"
+msgid_plural "%d characters"
+msgstr[0] "%d символ"
+msgstr[1] "%d символи"
+msgstr[2] "%d символів"
+
+#: templates/admin/settings-page.php:531
+msgid ""
+"These are the words Telegram itself returned. \"chat not found\" and \"bot "
+"was blocked by the user\" are different problems with different fixes; both "
+"used to arrive as a bare failure with no explanation."
+msgstr ""
+"Це дослівна відповідь Telegram. «chat not found» і «bot was blocked by the "
+"user» — різні проблеми з різними розв’язаннями, а раніше обидві надходили як "
+"голий відмов без пояснення."
+
+#: templates/admin/settings-page.php:536
+msgid "Chat ID helper"
+msgstr "Помічник Chat ID"
+
+#: templates/admin/settings-page.php:538
+msgid ""
+"Send a message to the bot, add it to a group, or add it as a channel admin, "
+"then scan updates. If webhook is enabled, incoming webhook updates are saved "
+"here automatically without message text."
+msgstr ""
+"Надішліть повідомлення боту, додайте його в групу або призначте "
+"адміністратором каналу, потім проскануйте оновлення. Якщо webhook увімкнено, "
+"вхідні webhook-оновлення зберігаються тут автоматично без тексту повідомлень."
+
+#: templates/admin/settings-page.php:540
+msgid "How to find a chat ID"
+msgstr "Як знайти ID чату"
+
+#: templates/admin/settings-page.php:542
+msgid ""
+"Private profile: open the bot in Telegram and send any message to it. Then "
+"scan latest updates, or refresh this page if webhook is enabled."
+msgstr ""
+"Особистий профіль: відкрийте бота в Telegram і надішліть йому будь-яке "
+"повідомлення. Потім проскануйте останні оновлення або оновіть цю сторінку, "
+"якщо webhook увімкнено."
+
+#: templates/admin/settings-page.php:543
+msgid ""
+"Group or supergroup: add the bot to the group and send a command or message "
+"the bot can receive. If BotFather privacy mode is enabled, send a command "
+"addressed to the bot, for example /start@your_bot_username."
+msgstr ""
+"Група або супергрупа: додайте бота до групи та надішліть команду або "
+"повідомлення, яке бот може отримати. Якщо в BotFather увімкнено privacy "
+"mode, надішліть команду з адресацією боту, наприклад /"
+"start@your_bot_username."
+
+#: templates/admin/settings-page.php:544
+msgid ""
+"Channel: add the bot as a channel administrator and publish a new post. "
+"Public channels can also be used as @channelusername."
+msgstr ""
+"Канал: додайте бота адміністратором каналу та опублікуйте новий пост. "
+"Публічні канали також можна вказувати як @channelusername."
+
+#: templates/admin/settings-page.php:545
+msgid ""
+"Copy the discovered ID from the table into Default chat IDs. Negative IDs "
+"for groups, supergroups, and channels are normal."
+msgstr ""
+"Скопіюйте знайдений ID з таблиці в ID чатів за замовчуванням. Від'ємні ID "
+"для груп, супергруп і каналів - це нормально."
+
+#: templates/admin/settings-page.php:552
+msgid "Scan latest updates"
+msgstr "Сканувати останні оновлення"
+
+#: templates/admin/settings-page.php:553
+msgid "Clear list"
+msgstr "Очистити список"
+
+#: templates/admin/settings-page.php:556
+msgid ""
+"The scan button uses getUpdates and can fail while a Telegram webhook is "
+"active. In that case, send a fresh message and refresh this page after the "
+"webhook receives it."
+msgstr ""
+"Кнопка сканування використовує getUpdates і може не спрацювати, поки "
+"активний Telegram webhook. У такому разі надішліть нове повідомлення й "
+"оновіть цю сторінку після того, як webhook його отримає."
+
+#: templates/admin/settings-page.php:561
+msgid "No Telegram chats discovered yet."
+msgstr "Чати Telegram поки не знайдено."
+
+#: templates/admin/settings-page.php:566
+msgid "Chat ID"
+msgstr "Chat ID"
+
+#: templates/admin/settings-page.php:569
+msgid "Source"
+msgstr "Джерело"
+
+#: templates/admin/settings-page.php:570
+msgid "Last seen"
+msgstr "Останнє виявлення"
+
+#: templates/admin/user-profile-fields.php:30
+msgid "Telegram ID"
+msgstr "Telegram ID"
+
+#: templates/admin/user-profile-fields.php:37
+msgid "Telegram username"
+msgstr "Ім’я користувача Telegram"
+
+#: templates/admin/user-profile-fields.php:44
+msgid "Telegram phone"
+msgstr "Телефон Telegram"
+
+#: templates/admin/user-profile-fields.php:56
+msgid ""
+"Stored from Telegram Login when the user shares a phone number, or entered "
+"manually."
+msgstr ""
+"Зберігається з Telegram Login, якщо користувач ділиться номером телефону, "
+"або вводиться вручну."
+
+#: templates/auth/profile-completion.php:41
+msgid "Complete your profile"
+msgstr "Завершіть профіль"
+
+#: templates/auth/profile-completion.php:42
+msgid ""
+"Telegram does not provide an email address, so we need one to finish "
+"creating your WordPress account."
+msgstr ""
+"Telegram не передає email, тому він потрібен нам, щоб завершити створення "
+"акаунта WordPress."
+
+#: templates/auth/profile-completion.php:51
+msgid "Email address"
+msgstr "Email"
+
+#: templates/auth/profile-completion.php:64
+msgid "Phone number"
+msgstr "Номер телефону"
+
+#: templates/auth/profile-completion.php:65
+msgid "optional"
+msgstr "необов’язково"
+
+#: templates/auth/profile-completion.php:78
+msgid "Save and continue"
+msgstr "Зберегти й продовжити"
+
+#~ msgid "Request bot access permission"
+#~ msgstr "Запитувати дозвіл доступу бота"
+
+#~ msgid "Third-party plugin integrations"
+#~ msgstr "Інтеграція зі сторонніми плагінами"
+
+#~ msgid "Telegram API error."
+#~ msgstr "Помилка Telegram API."

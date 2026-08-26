@@ -1,0 +1,25 @@
+# Keep development files out of `git archive` tarballs, so a GitHub release
+# download is close to the distributed plugin. This is not the same mechanism as
+# .distignore, which `wp dist-archive` reads — both exist because the two tools
+# do not share a format, and both lists should be kept in step.
+/.editorconfig     export-ignore
+/.distignore       export-ignore
+/.gitattributes    export-ignore
+/.github           export-ignore
+/.gitignore        export-ignore
+/docs              export-ignore
+/phpcs.xml.dist    export-ignore
+/phpstan.neon      export-ignore
+/resources         export-ignore
+
+# Normalise line endings so a checkout on Windows does not produce a diff in
+# every file and a POT regeneration that touches everything.
+* text=auto eol=lf
+
+*.png  binary
+*.jpg  binary
+*.gif  binary
+*.svg  text
+*.mo   binary
+*.woff binary
+*.woff2 binary
