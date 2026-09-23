@@ -3,7 +3,7 @@
  * Plugin Name: KS Telegram
  * Plugin URI: https://github.com/kostyasorokin/wp-ks-telegram
  * Description: Modern Telegram notifications, authorization, and bot integration toolkit for WordPress and WooCommerce.
- * Version: 1.2.0
+ * Version: 1.4.0
  * Requires at least: 6.7
  * Requires PHP: 8.4
  * Author: Konstantin Sorokin
@@ -35,7 +35,7 @@ use KonstantinSorokin\Telegram\Plugin;
 
 defined('ABSPATH') || exit;
 
-define('KS_TELEGRAM_VERSION', '1.2.0');
+define('KS_TELEGRAM_VERSION', '1.4.0');
 define('KS_TELEGRAM_FILE', __FILE__);
 define('KS_TELEGRAM_DIR', plugin_dir_path(__FILE__));
 define('KS_TELEGRAM_URL', plugin_dir_url(__FILE__));

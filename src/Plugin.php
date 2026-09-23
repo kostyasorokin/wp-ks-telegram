@@ -105,7 +105,7 @@ final class Plugin {
         $profile_completion->boot();
         (new WebhookController($this->settings, $this->bot_api, $chat_registry))->boot();
         (new NotificationManager($this->settings, $this->sender))->boot();
-        (new ChannelPublisher($this->settings, $this->sender))->boot();
+        (new ChannelPublisher($this->settings, $this->sender, $this->client))->boot();
         (new IntegrationManager($this->settings, $this->sender))->boot();
 
         /**

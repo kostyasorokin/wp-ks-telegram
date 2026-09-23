@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace KonstantinSorokin\Telegram\Publishing;
 
 use KonstantinSorokin\Telegram\Bot\MessageSender;
+use KonstantinSorokin\Telegram\Bot\TelegramApiClient;
 use KonstantinSorokin\Telegram\Settings\SettingsRepository;
 use WP_Post;
 
@@ -26,7 +27,8 @@ final readonly class ChannelPublisher {
 
     public function __construct(
         private SettingsRepository $settings,
-        private MessageSender $sender
+        private MessageSender $sender,
+        private TelegramApiClient $client
     ) {}
 
     /**
@@ -121,20 +123,38 @@ final readonly class ChannelPublisher {
                 return;
             }
 
-            $title = trim(wp_strip_all_tags(html_entity_decode(get_the_title($post), ENT_QUOTES | ENT_HTML5, 'UTF-8')));
-            $title = wp_html_excerpt($title, 300, '…');
-            $link_text = '' !== $title ? $title : $permalink;
-            $message = '<a href="' . esc_url($permalink) . '">' . esc_html($link_text) . '</a>';
+            $format = $this->settings->channelFormat($post->post_type);
+            [$message, $visible_text] = $this->message($post, $permalink, $format);
+            $photo = $format['image'] ? get_the_post_thumbnail_url($post, 'large') : false;
+            $photo = is_string($photo) && $this->isSiteUrl($photo) ? $photo : '';
 
-            $sent = $this->sender->send(
-                $chat_id,
-                $message,
-                [
+            // Telegram photo captions have a 1024-character limit. One API
+            // request per publication avoids partial sends and duplicate text.
+            if ('' !== $photo && mb_strlen($visible_text) <= 1024) {
+                $args = [
+                    'parse_mode'           => 'HTML',
+                    'disable_notification' => $this->settings->bool('channel_silent_publish'),
+                ];
+                $result = $this->client->sendPhoto($chat_id, $photo, $message, $args);
+                do_action('ks_telegram_message_sent', $chat_id, $message, $args, $result);
+                $sent = ! is_wp_error($result);
+            } else {
+                if ('' === $message) {
+                    $title = $this->plainText(get_the_title($post), 300);
+                    $message = '<a href="' . esc_url($permalink) . '">' . esc_html('' !== $title ? $title : $permalink) . '</a>';
+                }
+
+                $args = [
                     'parse_mode'               => 'HTML',
-                    'disable_web_page_preview' => true,
-                    'link_preview_options'     => ['is_disabled' => true],
-                ]
-            );
+                    'disable_web_page_preview' => $format['disable_preview'],
+                    'disable_notification'      => $this->settings->bool('channel_silent_publish'),
+                ];
+                if ($format['disable_preview']) {
+                    $args['link_preview_options'] = ['is_disabled' => true];
+                }
+
+                $sent = $this->sender->send($chat_id, $message, $args);
+            }
 
             if ($sent) {
                 update_post_meta($post_id, $sent_key, time());
@@ -154,6 +174,50 @@ final readonly class ChannelPublisher {
         } finally {
             delete_option($lock_key);
         }
+    }
+
+    /**
+     * Compose one HTML caption or text message and its visible character count.
+     *
+     * @param array<string,bool> $format Per-type format choices.
+     * @return array{string,string}
+     */
+    private function message(WP_Post $post, string $permalink, array $format): array {
+        $parts = [];
+        $visible = [];
+        $link = esc_url($permalink);
+
+        if ($format['title']) {
+            $title = $this->plainText(get_the_title($post), 300);
+            if ('' !== $title) {
+                $parts[] = $format['linked_title'] ? '<a href="' . $link . '">' . esc_html($title) . '</a>' : esc_html($title);
+                $visible[] = $title;
+            }
+        }
+
+        if ($format['description']) {
+            $description = $this->plainText(get_the_excerpt($post), 160);
+            if ('' !== $description) {
+                $parts[] = esc_html($description);
+                $visible[] = $description;
+            }
+        }
+
+        if ($format['permalink']) {
+            $parts[] = '<a href="' . $link . '">' . esc_html($permalink) . '</a>';
+            $visible[] = $permalink;
+        }
+
+        return [implode("\n\n", $parts), implode("\n\n", $visible)];
+    }
+
+    /**
+     * Strip formatting and bound visible text, including the ellipsis.
+     */
+    private function plainText(string $value, int $limit): string {
+        $value = trim(wp_strip_all_tags(html_entity_decode($value, ENT_QUOTES | ENT_HTML5, 'UTF-8')));
+        $value = trim((string) preg_replace('/\s+/u', ' ', $value));
+        return mb_strlen($value) > $limit ? mb_substr($value, 0, $limit - 1) . '…' : $value;
     }
 
     /**

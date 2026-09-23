@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: KS Telegram 1.2.0\n"
+"Project-Id-Version: KS Telegram 1.4.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ks-telegram\n"
 "POT-Creation-Date: 2026-08-26T10:44:52+00:00\n"
 "PO-Revision-Date: 2026-04-27 00:00+0000\n"
@@ -2039,8 +2039,8 @@ msgid "Publish to Telegram channel"
 msgstr "Публікація в Telegram-каналі"
 
 #: templates/admin/settings-page.php
-msgid "Send a linked title without a preview when selected content is published for the first time. This is separate from administrator notifications and never uses the default chat IDs."
-msgstr "Надсилати заголовок із посиланням без попереднього перегляду під час першої публікації вибраного матеріалу. Це окремо від сповіщень адміністратора й не використовує чати за замовчуванням."
+msgid "Send selected content when it is published for the first time. Each post type has its own message format. This is separate from administrator notifications and never uses the default chat IDs."
+msgstr "Надсилати вибрані матеріали під час першої публікації. Для кожного типу записів можна налаштувати окремий формат повідомлення. Це окремо від сповіщень адміністратора й не використовує чати за замовчуванням."
 
 #: templates/admin/settings-page.php
 msgid "Channel ID or @username"
@@ -2051,8 +2051,52 @@ msgid "Enter exactly one channel. The bot must be a channel administrator with p
 msgstr "Укажіть рівно один канал. Бот має бути адміністратором каналу з правом публікувати повідомлення. Залиште поле порожнім, щоб вимкнути публікацію."
 
 #: templates/admin/settings-page.php
+msgid "Numeric channel ID:"
+msgstr "Числовий ID каналу:"
+
+#: templates/admin/settings-page.php
+msgid "Unavailable. Check that the bot can access this channel."
+msgstr "Недоступний. Перевірте, чи має бот доступ до цього каналу."
+
+#: templates/admin/settings-page.php
 msgid "WordPress content"
 msgstr "Матеріали WordPress"
+
+#: templates/admin/settings-page.php
+msgid "Message content"
+msgstr "Вміст повідомлення"
+
+#: templates/admin/settings-page.php
+msgid "Featured image"
+msgstr "Головне зображення"
+
+#: templates/admin/settings-page.php
+msgid "Make the title a link to the post"
+msgstr "Зробити заголовок посиланням на запис"
+
+#: templates/admin/settings-page.php
+msgid "Short description (up to 160 characters)"
+msgstr "Короткий опис (до 160 символів)"
+
+#: templates/admin/settings-page.php
+msgid "Post link"
+msgstr "Посилання на запис"
+
+#: templates/admin/settings-page.php
+msgid "Disable link preview"
+msgstr "Вимкнути попередній перегляд посилання"
+
+#: templates/admin/settings-page.php
+msgid "Channel notifications"
+msgstr "Сповіщення каналу"
+
+#: templates/admin/settings-page.php
+msgid "Publish silently to the channel"
+msgstr "Публікувати в каналі без звуку"
+
+#: templates/admin/settings-page.php
+msgid "Channel posts will not make a notification sound. This setting does not affect administrator notifications."
+msgstr "Публікації в каналі не супроводжуватимуться звуковим сповіщенням. Це налаштування не впливає на сповіщення адміністратора."
 
 #: templates/admin/settings-page.php
 msgid "Custom post types"
@@ -2065,6 +2109,10 @@ msgstr "Публічні типи записів зі сторінкою ред�
 #: templates/admin/settings-page.php
 msgid "No eligible custom post types found."
 msgstr "Відповідних користувацьких типів записів не знайдено."
+
+#: templates/admin/settings-page.php
+msgid "The image uses the featured image. The short description uses the post excerpt and is limited to 160 characters. If an image is unavailable, the selected text is sent; if no text is selected, a linked title is sent."
+msgstr "Зображення береться з головного зображення запису, а короткий опис — з уривка й обмежується 160 символами. Якщо зображення немає, надсилається вибраний текст; якщо текст не вибрано, надсилається заголовок із посиланням."
 
 #: templates/admin/settings-page.php
 msgid "Posts"

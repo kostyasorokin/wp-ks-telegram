@@ -4,7 +4,7 @@ Tags: telegram, bot, notifications, woocommerce, login
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 8.4
-Stable tag: 1.2.0
+Stable tag: 1.4.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -27,6 +27,8 @@ The plugin is built as a standalone OOP application with namespaces, Composer PS
 * REST webhook endpoint for bot updates and custom bot handlers.
 * Chat ID helper for private chats, groups, supergroups, and channels.
 * Silent notification and web preview controls.
+* Separate silent publishing option for Telegram channel posts.
+* Per-post-type channel formats for featured image, title, short description, and post link.
 * Message header builder for date, time, message type hashtag, and site hashtag.
 * Built-in WordPress notifications for content, comments, users, security, media, updates, Site Health, and mail failures.
 * WooCommerce notifications for new orders, order status changes, add-to-cart events, and low stock alerts.
@@ -47,7 +49,7 @@ The plugin is built as a standalone OOP application with namespaces, Composer PS
 The settings page is split into native WordPress tabs:
 
 * Settings: bot token, default chat IDs, parse mode, Telegram Login, webhook, silent notifications, and general message controls.
-* Notifications: built-in WordPress notification events.
+* Notifications: built-in WordPress notification events and per-type public channel publishing.
 * Messages: message content and WooCommerce message field controls.
 * Plugins: third-party plugin integrations such as Contact Form 7, Mailchimp, and WooCommerce.
 * Tests: test message sender and Chat ID helper.
@@ -102,9 +104,9 @@ This plugin exists to send your site's events to Telegram, so it contacts servic
 
 = Telegram Bot API (api.telegram.org) =
 
-Used whenever a notification is sent, when you press Test message, when a bot token is verified, when the Chat ID helper fetches updates, when a webhook is registered or removed, and when a Telegram profile avatar is imported.
+Used whenever a notification is sent, when you press Test message, when a bot token is verified, when the Chat ID helper fetches updates, when a saved channel username is resolved to its numeric ID, when a webhook is registered or removed, and when a Telegram profile avatar is imported.
 
-What is transmitted: your bot token (it forms part of every Bot API request URL), the target chat IDs, and the message text. Depending on which notifications you switch on, that message text can contain personal data belonging to your visitors and users — WordPress usernames and email addresses, comment author names, email addresses and comment text, complete Contact Form 7 submissions, WooCommerce billing and shipping names, addresses, phone numbers, email addresses and customer notes, Mailchimp subscriber addresses, and the visitor's IP address, user agent and referring URL. The request-context block carrying IP, user agent and referrer is enabled by default and can be switched off in the settings.
+What is transmitted: your bot token (it forms part of every Bot API request URL), the target chat IDs, and the message text. Public channel publishing can also send the featured image's URL to Telegram, which then fetches that image from your site. Depending on which notifications you switch on, message text can contain personal data belonging to your visitors and users — WordPress usernames and email addresses, comment author names, email addresses and comment text, complete Contact Form 7 submissions, WooCommerce billing and shipping names, addresses, phone numbers, email addresses and customer notes, Mailchimp subscriber addresses, and the visitor's IP address, user agent and referring URL. The request-context block carrying IP, user agent and referrer is enabled by default and can be switched off in the settings.
 
 **Passwords.** The setting "Include plain passwords in authorization alerts" is off by default. If you enable it, the password submitted at the login form is sent to Telegram in plain text, including for failed login attempts — which means a password typed by a real person, sometimes one belonging to an account on a different site. Leave it off unless you fully understand that.
 
@@ -188,6 +190,15 @@ Source assets live in resources/js and resources/scss. Compiled assets are writt
 The source repository is https://github.com/kostyasorokin/wp-ks-telegram — issues and pull requests are welcome there.
 
 == Changelog ==
+
+= 1.4.0 =
+Add independent channel message format settings for posts, pages, and public custom post types.
+
+= 1.3.1 =
+Show the numeric channel ID below the saved channel username in settings.
+
+= 1.3.0 =
+Add an independent silent publishing option for channel posts.
 
 = 1.2.0 =
 Discover public custom post types automatically for channel publishing, including KS Cases, while preserving existing KS News choices.

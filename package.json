@@ -1,6 +1,6 @@
 {
   "name": "ks-telegram",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "private": true,
   "license": "GPL-3.0-or-later",
   "description": "Modern Telegram integration toolkit for WordPress and WooCommerce.",

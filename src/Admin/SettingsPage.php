@@ -191,6 +191,7 @@ final readonly class SettingsPage {
         }
 
         $settings = $this->settings->all();
+        $channel_numeric_id = $this->channelNumericId();
         $custom_post_types = ChannelPublisher::availableCustomPostTypes();
         $selected_custom_post_types = $this->settings->selectedCustomPostTypes();
         $notice   = $this->consumeNotice();
@@ -204,6 +205,36 @@ final readonly class SettingsPage {
         $delivery_is_failing  = $this->delivery_log->isFailing();
 
         require KS_TELEGRAM_DIR . 'templates/admin/settings-page.php';
+    }
+
+    /**
+     * Resolve the saved channel username to a numeric ID without a network
+     * request on every visit to the settings page.
+     */
+    public function channelNumericId(): string {
+        $channel = $this->settings->channelId();
+        if ('' === $channel || 1 === preg_match('/^-?\d+$/', $channel)) {
+            return $channel;
+        }
+
+        $token = $this->settings->botToken();
+        if ('' === $token) {
+            return '';
+        }
+
+        $cache_key = 'ks_telegram_channel_id_' . substr(hash('sha256', $token . ':' . strtolower($channel)), 0, 32);
+        $cached = get_transient($cache_key);
+        if (is_string($cached)) {
+            return $cached;
+        }
+
+        $response = $this->client->request('getChat', ['chat_id' => $channel]);
+        $chat = is_array($response) ? ($response['result'] ?? null) : null;
+        $id = is_array($chat) && 'channel' === ($chat['type'] ?? '') ? (string) ($chat['id'] ?? '') : '';
+        $id = 1 === preg_match('/^-?\d+$/', $id) ? $id : '';
+
+        set_transient($cache_key, $id, '' !== $id ? DAY_IN_SECONDS : 5 * MINUTE_IN_SECONDS);
+        return $id;
     }
 
     /**

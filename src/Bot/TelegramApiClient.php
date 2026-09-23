@@ -57,6 +57,23 @@ final readonly class TelegramApiClient {
     }
 
     /**
+     * Send a publicly reachable image with one optional caption.
+     *
+     * @param string|int          $chat_id Target chat ID.
+     * @param string              $photo   Image URL.
+     * @param string              $caption Caption text.
+     * @param array<string,mixed> $args    Additional sendPhoto arguments.
+     *
+     * @return array<string,mixed>|WP_Error
+     */
+    public function sendPhoto(string|int $chat_id, string $photo, string $caption = '', array $args = []): array|WP_Error {
+        return $this->request(
+            'sendPhoto',
+            array_merge($args, ['chat_id' => (string) $chat_id, 'photo' => $photo, 'caption' => $caption])
+        );
+    }
+
+    /**
      * Ask Telegram for bot metadata.
      *
      * @return array<string,mixed>|WP_Error

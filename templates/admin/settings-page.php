@@ -33,6 +33,40 @@ $ks_telegram_table_checkbox = static function (string $key, string $label, array
 };
 
 /**
+ * Render independent channel message options for one content type.
+ *
+ * @param string              $post_type Post type slug.
+ * @param array<string,mixed> $settings  Current settings.
+ */
+$ks_telegram_channel_format = static function (string $post_type, array $settings): void {
+    $formats = $settings['channel_post_formats'] ?? [];
+    $stored = is_array($formats) ? ($formats[$post_type] ?? []) : [];
+    $format = array_merge(\KonstantinSorokin\Telegram\Settings\SettingsRepository::defaultChannelFormat(), is_array($stored) ? $stored : []);
+    $fields = [
+        'image'           => __('Featured image', 'ks-telegram'),
+        'title'           => __('Title', 'ks-telegram'),
+        'linked_title'    => __('Make the title a link to the post', 'ks-telegram'),
+        'description'     => __('Short description (up to 160 characters)', 'ks-telegram'),
+        'permalink'       => __('Post link', 'ks-telegram'),
+        'disable_preview' => __('Disable link preview', 'ks-telegram'),
+    ];
+    ?>
+    <fieldset class="ks-telegram-channel-format">
+        <legend><?php echo esc_html__('Message content', 'ks-telegram'); ?></legend>
+        <input type="hidden" name="<?php echo esc_attr(\KonstantinSorokin\Telegram\Settings\SettingsRepository::OPTION_NAME . '[channel_post_formats][' . $post_type . '][_present]'); ?>" value="1">
+        <div class="ks-telegram-channel-format__fields">
+            <?php foreach ($fields as $field => $label) : ?>
+                <label>
+                    <input type="checkbox" name="<?php echo esc_attr(\KonstantinSorokin\Telegram\Settings\SettingsRepository::OPTION_NAME . '[channel_post_formats][' . $post_type . '][' . $field . ']'); ?>" value="1" <?php checked(! empty($format[$field])); ?>>
+                    <?php echo esc_html($label); ?>
+                </label>
+            <?php endforeach; ?>
+        </div>
+    </fieldset>
+    <?php
+};
+
+/**
  * Get a readable chat type label.
  *
  * @param string $type Telegram chat type.
@@ -350,13 +384,23 @@ $ks_telegram_chat_source_label = static function (string $source): string {
                 </table>
 
                 <h2><?php echo esc_html__('Publish to Telegram channel', 'ks-telegram'); ?></h2>
-                <p class="description"><?php echo esc_html__('Send a linked title without a preview when selected content is published for the first time. This is separate from administrator notifications and never uses the default chat IDs.', 'ks-telegram'); ?></p>
+                <p class="description"><?php echo esc_html__('Send selected content when it is published for the first time. Each post type has its own message format. This is separate from administrator notifications and never uses the default chat IDs.', 'ks-telegram'); ?></p>
                 <table class="form-table" role="presentation">
                     <tr>
                         <th scope="row"><label for="ks-telegram-channel-id"><?php echo esc_html__('Channel ID or @username', 'ks-telegram'); ?></label></th>
                         <td>
                             <input id="ks-telegram-channel-id" class="regular-text code" type="text" autocomplete="off" name="<?php echo esc_attr(\KonstantinSorokin\Telegram\Settings\SettingsRepository::OPTION_NAME . '[channel_chat_id]'); ?>" value="<?php echo esc_attr((string) $settings['channel_chat_id']); ?>" placeholder="@channelusername">
                             <p class="description"><?php echo esc_html__('Enter exactly one channel. The bot must be a channel administrator with permission to post messages. Leave this empty to disable public publishing.', 'ks-telegram'); ?></p>
+                            <?php if ('' !== (string) $settings['channel_chat_id']) : ?>
+                                <p class="description">
+                                    <?php echo esc_html__('Numeric channel ID:', 'ks-telegram'); ?>
+                                    <?php if ('' !== $channel_numeric_id) : ?>
+                                        <code><?php echo esc_html($channel_numeric_id); ?></code>
+                                    <?php else : ?>
+                                        <?php echo esc_html__('Unavailable. Check that the bot can access this channel.', 'ks-telegram'); ?>
+                                    <?php endif; ?>
+                                </p>
+                            <?php endif; ?>
                         </td>
                     </tr>
                     <tr>
@@ -364,8 +408,17 @@ $ks_telegram_chat_source_label = static function (string $source): string {
                         <td>
                             <?php
                             $ks_telegram_table_checkbox('channel_publish_posts', __('Posts', 'ks-telegram'), $settings);
+                            $ks_telegram_channel_format('post', $settings);
                             $ks_telegram_table_checkbox('channel_publish_pages', __('Pages', 'ks-telegram'), $settings);
+                            $ks_telegram_channel_format('page', $settings);
                             ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo esc_html__('Channel notifications', 'ks-telegram'); ?></th>
+                        <td>
+                            <?php $ks_telegram_table_checkbox('channel_silent_publish', __('Publish silently to the channel', 'ks-telegram'), $settings); ?>
+                            <p class="description"><?php echo esc_html__('Channel posts will not make a notification sound. This setting does not affect administrator notifications.', 'ks-telegram'); ?></p>
                         </td>
                     </tr>
                 </table>
@@ -379,10 +432,12 @@ $ks_telegram_chat_source_label = static function (string $source): string {
                             <label>
                                 <input type="checkbox" name="<?php echo esc_attr(\KonstantinSorokin\Telegram\Settings\SettingsRepository::OPTION_NAME . '[channel_publish_custom_types][]'); ?>" value="<?php echo esc_attr($custom_post_type->name); ?>" <?php checked(in_array($custom_post_type->name, $selected_custom_post_types, true)); ?>>
                                 <?php echo esc_html($custom_post_type->label); ?> <code><?php echo esc_html($custom_post_type->name); ?></code>
-                            </label><br>
+                            </label>
+                            <?php $ks_telegram_channel_format($custom_post_type->name, $settings); ?>
                         <?php endforeach; ?>
                     <?php endif; ?>
                 </div>
+                <p class="description"><?php echo esc_html__('The image uses the featured image. The short description uses the post excerpt and is limited to 160 characters. If an image is unavailable, the selected text is sent; if no text is selected, a linked title is sent.', 'ks-telegram'); ?></p>
                 <p class="description"><?php echo esc_html__('Messages are queued after publication and sent by WordPress cron. Earlier publications and later edits are not sent again. Failed deliveries are retried up to three times.', 'ks-telegram'); ?></p>
             </section>
 

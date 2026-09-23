@@ -41,6 +41,8 @@ final class SettingsRepository {
             'channel_publish_pages'             => false,
             'channel_publish_news'              => false,
             'channel_publish_custom_types'      => [],
+            'channel_post_formats'              => [],
+            'channel_silent_publish'            => false,
             'large_upload_threshold_mb'         => 10,
             'message_header_date'               => true,
             'message_header_site_hashtag'       => true,
@@ -208,6 +210,38 @@ final class SettingsRepository {
 
         $settings['channel_publish_custom_types'] = array_values(array_unique($selected_custom_types));
 
+        $submitted_formats = $input['channel_post_formats'] ?? [];
+        $submitted_formats = is_array($submitted_formats) ? $submitted_formats : [];
+        $available_types = array_fill_keys(array_merge(['post', 'page'], array_keys($available_custom_types)), true);
+        $formats = [];
+
+        foreach ($submitted_formats as $slug => $submitted_format) {
+            if (! is_string($slug) || ! isset($available_types[$slug]) || ! is_array($submitted_format)) {
+                continue;
+            }
+
+            $format = [];
+            foreach (self::defaultChannelFormat() as $field => $default) {
+                $format[$field] = $this->sanitizeBool($submitted_format[$field] ?? false);
+            }
+
+            // An empty text-only format cannot produce a Telegram message.
+            if (! $format['image'] && ! $format['title'] && ! $format['description'] && ! $format['permalink']) {
+                $format = self::defaultChannelFormat();
+            }
+
+            $formats[$slug] = $format;
+        }
+
+        $previous_formats = is_array($old['channel_post_formats']) ? $old['channel_post_formats'] : [];
+        foreach ($previous_formats as $slug => $format) {
+            if (is_string($slug) && is_array($format) && ! isset($available_types[$slug]) && ! post_type_exists($slug)) {
+                $formats[$slug] = $format;
+            }
+        }
+
+        $settings['channel_post_formats'] = $formats;
+
         // The KS News field is hidden when that plugin is inactive. Keep the
         // choice for a later reactivation, while the publisher itself ignores it.
         if (! ChannelPublisher::newsAvailable()) {
@@ -341,6 +375,42 @@ final class SettingsRepository {
             $stored,
             static fn($slug): bool => is_string($slug) && isset($available[$slug])
         )));
+    }
+
+    /**
+     * Preserve the existing linked-title-only delivery for all post types.
+     *
+     * @return array{image:bool,title:bool,linked_title:bool,description:bool,permalink:bool,disable_preview:bool}
+     */
+    public static function defaultChannelFormat(): array {
+        return [
+            'image'           => false,
+            'title'           => true,
+            'linked_title'    => true,
+            'description'     => false,
+            'permalink'       => false,
+            'disable_preview' => true,
+        ];
+    }
+
+    /**
+     * Get the selected channel content format for one post type.
+     *
+     * @return array{image:bool,title:bool,linked_title:bool,description:bool,permalink:bool,disable_preview:bool}
+     */
+    public function channelFormat(string $post_type): array {
+        $stored = $this->all()['channel_post_formats'] ?? [];
+        $format = is_array($stored) ? ($stored[$post_type] ?? []) : [];
+        $format = is_array($format) ? $format : [];
+        $result = self::defaultChannelFormat();
+
+        foreach ($result as $field => $default) {
+            if (array_key_exists($field, $format)) {
+                $result[$field] = $this->sanitizeBool($format[$field]);
+            }
+        }
+
+        return $result;
     }
 
     /**

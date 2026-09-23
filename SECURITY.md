@@ -18,7 +18,7 @@ plugin written by one person and given away.
 
 ## Supported versions
 
-The current supported release is 1.2.0. Version 1.0.0 was the first public
+The current supported release is 1.4.0. Version 1.0.0 was the first public
 release. There are no known unpatched issues.
 
 ## Things that are dangerous by design

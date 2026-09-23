@@ -27,3 +27,20 @@
 .ks-telegram-action .description { margin: -4px 0 12px; }
 
 .ks-telegram-webhook-actions .button { margin-right: 8px; }
+
+.ks-telegram-channel-format {
+    border-left: 2px solid #c3c4c7;
+    margin: 8px 0 20px 8px;
+    padding: 2px 0 2px 14px;
+}
+
+.ks-telegram-channel-format legend { font-weight: 600; }
+
+.ks-telegram-channel-format__fields {
+    display: grid;
+    gap: 8px 16px;
+    grid-template-columns: repeat(auto-fit, minmax(245px, 1fr));
+    margin-top: 8px;
+}
+
+.ks-telegram-channel-format__fields label { display: block; }

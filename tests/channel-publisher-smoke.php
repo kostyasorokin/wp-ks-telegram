@@ -15,6 +15,12 @@ $news_registered = false;
 $posts = [];
 $meta = [];
 $permalinks = [];
+$excerpts = [];
+$photos = [];
+$transients = [];
+
+define('DAY_IN_SECONDS', 86400);
+define('MINUTE_IN_SECONDS', 60);
 
 class WP_Error {
     public function __construct(public string $code) {}
@@ -33,6 +39,17 @@ class WP_Post {
 function get_option(string $key, mixed $default = false): mixed {
     global $options;
     return $options[$key] ?? $default;
+}
+
+function get_transient(string $key): mixed {
+    global $transients;
+    return $transients[$key] ?? false;
+}
+
+function set_transient(string $key, mixed $value, int $expiration): bool {
+    global $transients;
+    $transients[$key] = $value;
+    return true;
 }
 
 function add_option(string $key, mixed $value): bool {
@@ -85,6 +102,16 @@ function wp_parse_url(string $url, int $component): string|false|null {
 
 function get_the_title(WP_Post $post): string {
     return $post->post_title;
+}
+
+function get_the_excerpt(WP_Post $post): string {
+    global $excerpts;
+    return $excerpts[$post->ID] ?? '';
+}
+
+function get_the_post_thumbnail_url(WP_Post $post, string $size): string|false {
+    global $photos;
+    return $photos[$post->ID] ?? false;
 }
 
 function wp_strip_all_tags(string $text): string {
@@ -193,6 +220,9 @@ require dirname(__DIR__) . '/src/Settings/SettingsRepository.php';
 require __DIR__ . '/FakeTelegramApiClient.php';
 require dirname(__DIR__) . '/src/Bot/MessageSender.php';
 require dirname(__DIR__) . '/src/Publishing/ChannelPublisher.php';
+require dirname(__DIR__) . '/src/Bot/ChatRegistry.php';
+require dirname(__DIR__) . '/src/Support/DeliveryLog.php';
+require dirname(__DIR__) . '/src/Admin/SettingsPage.php';
 
 $settings = new \KonstantinSorokin\Telegram\Settings\SettingsRepository();
 $options['ks_telegram'] = ['channel_publish_news' => true];
@@ -206,6 +236,8 @@ check('@publicchannel' === $clean['channel_chat_id'], 'One channel username is a
 check(true === $clean['channel_publish_news'], 'Hidden KS News choice is preserved.');
 check('' === $settings->sanitize(['channel_chat_id' => '@one @two'])['channel_chat_id'], 'Multiple destinations are rejected.');
 check(['ks_case'] === $settings->sanitize(['channel_publish_custom_types' => ['ks_case', 'internal_type', 'unknown']])['channel_publish_custom_types'], 'Only public custom post types can be selected.');
+check(false === $settings->sanitize([])['channel_silent_publish'], 'Silent channel publishing is off unless selected.');
+check(true === $settings->sanitize(['channel_silent_publish' => '1'])['channel_silent_publish'], 'Silent channel publishing can be selected.');
 
 $options['ks_telegram'] = [
     'bot_token' => 'test-token',
@@ -214,11 +246,12 @@ $options['ks_telegram'] = [
     'channel_publish_posts' => true,
     'channel_publish_pages' => false,
     'channel_publish_news' => true,
+    'silent_notifications' => true,
 ];
 
 $client = new \KonstantinSorokin\Telegram\Bot\TelegramApiClient();
 $sender = new \KonstantinSorokin\Telegram\Bot\MessageSender($settings, $client);
-$publisher = new \KonstantinSorokin\Telegram\Publishing\ChannelPublisher($settings, $sender);
+$publisher = new \KonstantinSorokin\Telegram\Publishing\ChannelPublisher($settings, $sender, $client);
 
 $publisher->postStatusChanged('publish', 'draft', new WP_Post(12, 'post'));
 check(1 === count($events) && $events[0]['args'] === [12, '@publicchannel', 0], 'A first post publication queues only the channel destination.');
@@ -249,6 +282,7 @@ check('<a href="https://example.test/?p=12&amp;ref=news">Public &amp; &quot;titl
 check('HTML' === $client->sent[0]['args']['parse_mode'], 'The public message uses Telegram HTML.');
 check(true === $client->sent[0]['args']['disable_web_page_preview'], 'Legacy link previews are disabled.');
 check(['is_disabled' => true] === $client->sent[0]['args']['link_preview_options'], 'Modern link previews are disabled.');
+check(false === $client->sent[0]['args']['disable_notification'], 'Channel posts are not silent just because administrator notifications are silent.');
 $publisher->deliver(12, '@publicchannel', 0);
 check(1 === count($client->sent), 'A successful delivery is not repeated.');
 
@@ -283,5 +317,83 @@ $publisher->postStatusChanged('publish', 'draft', new WP_Post(21, 'ks_case'));
 check(5 === count($events) && [21, '@publicchannel', 0] === $events[4]['args'], 'New cases can be queued when selected.');
 $publisher->postStatusChanged('publish', 'draft', new WP_Post(22, 'internal_type'));
 check(5 === count($events), 'Non-public types cannot be queued even if stored in settings.');
+
+$options['ks_telegram']['channel_silent_publish'] = true;
+$options['ks_telegram']['silent_notifications'] = false;
+$posts[23] = new WP_Post(23, 'ks_case');
+$publisher->deliver(23, '@publicchannel', 0);
+check(5 === count($client->sent), 'A newly published case is sent to the channel.');
+check(true === $client->sent[4]['args']['disable_notification'], 'Channel silence is independent of administrator notification settings.');
+
+$formats = $settings->sanitize([
+    'channel_post_formats' => [
+        'post' => ['_present' => '1', 'description' => '1', 'permalink' => '1'],
+        'internal_type' => ['_present' => '1', 'image' => '1'],
+    ],
+]);
+check(false === $formats['channel_post_formats']['post']['title'] && true === $formats['channel_post_formats']['post']['description'], 'Per-type format checkboxes are sanitized independently.');
+check(! isset($formats['channel_post_formats']['internal_type']), 'Non-public post type formats cannot be saved.');
+check(true === $settings->channelFormat('ks_case')['linked_title'], 'Unconfigured types retain the linked-title format.');
+
+$options['ks_telegram']['channel_post_formats']['news'] = [
+    'image' => true,
+    'title' => true,
+    'linked_title' => false,
+    'description' => true,
+    'permalink' => true,
+    'disable_preview' => false,
+];
+$posts[24] = new WP_Post(24, 'news', 'publish', '', 'News <b>headline</b>');
+$excerpts[24] = str_repeat('Ж', 170);
+$photos[24] = 'https://example.test/photo.jpg';
+$publisher->deliver(24, '@publicchannel', 0);
+check(1 === count($client->photos), 'A configured featured image is sent as a photo.');
+check('https://example.test/photo.jpg' === $client->photos[0]['photo'], 'The photo uses the post thumbnail URL.');
+check(str_contains($client->photos[0]['caption'], 'News headline' . "\n\n"), 'The title can be plain text.');
+check(str_contains($client->photos[0]['caption'], str_repeat('Ж', 159) . '…'), 'The short description is limited to 160 characters including the ellipsis.');
+check(str_contains($client->photos[0]['caption'], '<a href="https://example.test/?p=24">https://example.test/?p=24</a>'), 'A separate post link can be included.');
+check(true === $client->photos[0]['args']['disable_notification'], 'Photo posts respect channel silence.');
+
+$posts[25] = new WP_Post(25, 'news', 'publish', '', 'Text-only fallback');
+$excerpts[25] = 'A short summary';
+$publisher->deliver(25, '@publicchannel', 0);
+check(6 === count($client->sent) && 1 === count($client->photos), 'Posts without a featured image use a text message.');
+check(false === $client->sent[5]['args']['disable_web_page_preview'], 'A per-type setting can enable link previews.');
+check(! isset($client->sent[5]['args']['link_preview_options']), 'Enabled previews do not carry a disabling option.');
+
+$options['ks_telegram']['channel_post_formats']['news'] = [
+    'image' => true,
+    'title' => false,
+    'linked_title' => false,
+    'description' => false,
+    'permalink' => false,
+    'disable_preview' => true,
+];
+$posts[26] = new WP_Post(26, 'news');
+$publisher->deliver(26, '@publicchannel', 0);
+check(7 === count($client->sent) && str_contains($client->sent[6]['text'], 'Test title'), 'Image-only posts without a photo fall back to a linked title.');
+
+$admin_page = new \KonstantinSorokin\Telegram\Admin\SettingsPage(
+    $settings,
+    $sender,
+    $client,
+    new \KonstantinSorokin\Telegram\Bot\ChatRegistry(),
+    new \KonstantinSorokin\Telegram\Support\DeliveryLog($settings)
+);
+check('-1001234567890' === $admin_page->channelNumericId(), 'The channel username resolves to a numeric ID.');
+check('-1001234567890' === $admin_page->channelNumericId() && 1 === $client->chatRequests, 'The numeric ID is cached for repeat settings views.');
+
+$options['ks_telegram']['channel_chat_id'] = '-100999';
+check('-100999' === $admin_page->channelNumericId() && 1 === $client->chatRequests, 'A numeric channel ID needs no Telegram lookup.');
+
+$options['ks_telegram']['channel_chat_id'] = '@anotherchannel';
+$client->chatResult = ['ok' => true, 'result' => ['id' => -100222, 'type' => 'supergroup']];
+check('' === $admin_page->channelNumericId(), 'A non-channel result is not displayed as the channel ID.');
+check(2 === $client->chatRequests && '' === $admin_page->channelNumericId() && 2 === $client->chatRequests, 'A failed lookup is briefly cached.');
+
+$options['ks_telegram']['channel_chat_id'] = '@publicchannel';
+$options['ks_telegram']['bot_token'] = 'another-token';
+$client->chatResult = ['ok' => true, 'result' => ['id' => -100444, 'type' => 'channel']];
+check('-100444' === $admin_page->channelNumericId() && 3 === $client->chatRequests, 'Changing the bot token invalidates the cached ID.');
 
 echo "Channel publishing smoke tests passed.\n";
