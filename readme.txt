@@ -4,7 +4,7 @@ Tags: telegram, bot, notifications, woocommerce, login
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 8.4
-Stable tag: 1.0.0
+Stable tag: 1.2.0
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -188,6 +188,15 @@ Source assets live in resources/js and resources/scss. Compiled assets are writt
 The source repository is https://github.com/kostyasorokin/wp-ks-telegram — issues and pull requests are welcome there.
 
 == Changelog ==
+
+= 1.2.0 =
+Discover public custom post types automatically for channel publishing, including KS Cases, while preserving existing KS News choices.
+
+= 1.1.1 =
+Link channel message titles to their posts and disable link previews.
+
+= 1.1.0 =
+Add optional Telegram channel publishing for new posts, pages, and KS News items.
 
 = 1.0.0 =
 First public release.

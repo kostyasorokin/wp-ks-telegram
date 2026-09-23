@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: KS Telegram 1.0.0\n"
+"Project-Id-Version: KS Telegram 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ks-telegram\n"
 "POT-Creation-Date: 2026-08-26T10:44:52+00:00\n"
 "PO-Revision-Date: 2026-04-27 00:00+0000\n"
@@ -2033,6 +2033,58 @@ msgstr "необов’язково"
 #: templates/auth/profile-completion.php:78
 msgid "Save and continue"
 msgstr "Зберегти й продовжити"
+
+#: templates/admin/settings-page.php
+msgid "Publish to Telegram channel"
+msgstr "Публікація в Telegram-каналі"
+
+#: templates/admin/settings-page.php
+msgid "Send a linked title without a preview when selected content is published for the first time. This is separate from administrator notifications and never uses the default chat IDs."
+msgstr "Надсилати заголовок із посиланням без попереднього перегляду під час першої публікації вибраного матеріалу. Це окремо від сповіщень адміністратора й не використовує чати за замовчуванням."
+
+#: templates/admin/settings-page.php
+msgid "Channel ID or @username"
+msgstr "ID каналу або @username"
+
+#: templates/admin/settings-page.php
+msgid "Enter exactly one channel. The bot must be a channel administrator with permission to post messages. Leave this empty to disable public publishing."
+msgstr "Укажіть рівно один канал. Бот має бути адміністратором каналу з правом публікувати повідомлення. Залиште поле порожнім, щоб вимкнути публікацію."
+
+#: templates/admin/settings-page.php
+msgid "WordPress content"
+msgstr "Матеріали WordPress"
+
+#: templates/admin/settings-page.php
+msgid "Custom post types"
+msgstr "Користувацькі типи записів"
+
+#: templates/admin/settings-page.php
+msgid "Public custom post types with an admin screen appear here automatically. New types remain off until selected."
+msgstr "Публічні типи записів зі сторінкою редагування з’являються тут автоматично. Нові типи вимкнені, доки ви їх не виберете."
+
+#: templates/admin/settings-page.php
+msgid "No eligible custom post types found."
+msgstr "Відповідних користувацьких типів записів не знайдено."
+
+#: templates/admin/settings-page.php
+msgid "Posts"
+msgstr "Записи"
+
+#: templates/admin/settings-page.php
+msgid "Pages"
+msgstr "Сторінки"
+
+#: templates/admin/settings-page.php
+msgid "KS News"
+msgstr "KS News"
+
+#: templates/admin/settings-page.php
+msgid "News"
+msgstr "Новини"
+
+#: templates/admin/settings-page.php
+msgid "Messages are queued after publication and sent by WordPress cron. Earlier publications and later edits are not sent again. Failed deliveries are retried up to three times."
+msgstr "Повідомлення ставляться в чергу після публікації та надсилаються через WordPress cron. Раніше опубліковані матеріали й подальші зміни не надсилаються повторно. У разі помилки виконується до трьох спроб."
 
 #~ msgid "Request bot access permission"
 #~ msgstr "Запитувати дозвіл доступу бота"

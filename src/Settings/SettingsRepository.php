@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace KonstantinSorokin\Telegram\Settings;
 
+use KonstantinSorokin\Telegram\Publishing\ChannelPublisher;
 use KonstantinSorokin\Telegram\Support\WebhookSecret;
 
 defined('ABSPATH') || exit;
@@ -35,6 +36,11 @@ final class SettingsRepository {
             'bot_token'                         => '',
             'bot_username'                      => '',
             'default_chat_ids'                  => '',
+            'channel_chat_id'                   => '',
+            'channel_publish_posts'             => false,
+            'channel_publish_pages'             => false,
+            'channel_publish_news'              => false,
+            'channel_publish_custom_types'      => [],
             'large_upload_threshold_mb'         => 10,
             'message_header_date'               => true,
             'message_header_site_hashtag'       => true,
@@ -153,6 +159,7 @@ final class SettingsRepository {
 
         $settings['bot_username']              = $this->sanitizeBotUsername($input['bot_username'] ?? '');
         $settings['default_chat_ids']          = $this->sanitizeChatIdsText($input['default_chat_ids'] ?? '');
+        $settings['channel_chat_id']           = $this->sanitizeChannelId($input['channel_chat_id'] ?? '');
         $settings['large_upload_threshold_mb'] = $this->sanitizePositiveInt($input['large_upload_threshold_mb'] ?? $old['large_upload_threshold_mb'], (int) $old['large_upload_threshold_mb'], 1, 1024);
 
         // Floor 0, not 1: zero means "never warn".
@@ -172,6 +179,39 @@ final class SettingsRepository {
             if (is_bool($default)) {
                 $settings[$key] = $this->sanitizeBool($input[$key] ?? false);
             }
+        }
+
+        $available_custom_types = ChannelPublisher::availableCustomPostTypes();
+        $submitted_custom_types = $input['channel_publish_custom_types'] ?? [];
+        $submitted_custom_types = is_array($submitted_custom_types) ? $submitted_custom_types : [];
+        $selected_custom_types  = [];
+
+        foreach ($submitted_custom_types as $slug) {
+            if (! is_string($slug)) {
+                continue;
+            }
+
+            $slug = sanitize_key(wp_unslash($slug));
+            if (isset($available_custom_types[$slug])) {
+                $selected_custom_types[] = $slug;
+            }
+        }
+
+        // Keep choices from temporarily disabled plugins, but never retain a
+        // registered type that is no longer public or viewable.
+        $previous_custom_types = is_array($old['channel_publish_custom_types']) ? $old['channel_publish_custom_types'] : [];
+        foreach ($previous_custom_types as $slug) {
+            if (is_string($slug) && $slug === sanitize_key($slug) && ! post_type_exists($slug)) {
+                $selected_custom_types[] = $slug;
+            }
+        }
+
+        $settings['channel_publish_custom_types'] = array_values(array_unique($selected_custom_types));
+
+        // The KS News field is hidden when that plugin is inactive. Keep the
+        // choice for a later reactivation, while the publisher itself ignores it.
+        if (! ChannelPublisher::newsAvailable()) {
+            $settings['channel_publish_news'] = (bool) $old['channel_publish_news'];
         }
 
         $secret = isset($input['webhook_secret']) ? sanitize_key(wp_unslash((string) $input['webhook_secret'])) : '';
@@ -277,6 +317,33 @@ final class SettingsRepository {
     }
 
     /**
+     * Return the single public publishing destination, never default alert chats.
+     */
+    public function channelId(): string {
+        return $this->sanitizeChannelId($this->string('channel_chat_id'));
+    }
+
+    /**
+     * Selected and currently available custom post types, including legacy News.
+     *
+     * @return array<int,string>
+     */
+    public function selectedCustomPostTypes(): array {
+        $stored = $this->all()['channel_publish_custom_types'] ?? [];
+        $stored = is_array($stored) ? $stored : [];
+
+        if ($this->bool('channel_publish_news') && ChannelPublisher::newsAvailable()) {
+            $stored[] = (string) KS_NEWS_POST_TYPE;
+        }
+
+        $available = ChannelPublisher::availableCustomPostTypes();
+        return array_values(array_unique(array_filter(
+            $stored,
+            static fn($slug): bool => is_string($slug) && isset($available[$slug])
+        )));
+    }
+
+    /**
      * Parse chat IDs from a string, scalar, or array.
      *
      * @param string|int|array<int,string|int>|null $chat_ids Raw chat IDs.
@@ -373,6 +440,18 @@ final class SettingsRepository {
      */
     private function sanitizeChatIdsText(mixed $value): string {
         return implode("\n", $this->parseChatIds((string) wp_unslash($value)));
+    }
+
+    /**
+     * Accept one Telegram numeric ID or public channel username only.
+     */
+    private function sanitizeChannelId(mixed $value): string {
+        if (! is_string($value) && ! is_int($value)) {
+            return '';
+        }
+
+        $value = trim((string) wp_unslash($value));
+        return preg_match('/^(?:-?\d+|@[A-Za-z0-9_]{5,32})$/', $value) ? $value : '';
     }
 
     /**

@@ -230,6 +230,7 @@ $ks_telegram_chat_source_label = static function (string $source): string {
                         </td>
                     </tr>
                 </table>
+
             </section>
 
             <section id="ks-telegram-panel-messages" class="ks-telegram-tabs__panel" role="tabpanel" aria-labelledby="ks-telegram-tab-messages" data-ks-telegram-panel="messages">
@@ -347,6 +348,42 @@ $ks_telegram_chat_source_label = static function (string $source): string {
                         </td>
                     </tr>
                 </table>
+
+                <h2><?php echo esc_html__('Publish to Telegram channel', 'ks-telegram'); ?></h2>
+                <p class="description"><?php echo esc_html__('Send a linked title without a preview when selected content is published for the first time. This is separate from administrator notifications and never uses the default chat IDs.', 'ks-telegram'); ?></p>
+                <table class="form-table" role="presentation">
+                    <tr>
+                        <th scope="row"><label for="ks-telegram-channel-id"><?php echo esc_html__('Channel ID or @username', 'ks-telegram'); ?></label></th>
+                        <td>
+                            <input id="ks-telegram-channel-id" class="regular-text code" type="text" autocomplete="off" name="<?php echo esc_attr(\KonstantinSorokin\Telegram\Settings\SettingsRepository::OPTION_NAME . '[channel_chat_id]'); ?>" value="<?php echo esc_attr((string) $settings['channel_chat_id']); ?>" placeholder="@channelusername">
+                            <p class="description"><?php echo esc_html__('Enter exactly one channel. The bot must be a channel administrator with permission to post messages. Leave this empty to disable public publishing.', 'ks-telegram'); ?></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><?php echo esc_html__('WordPress content', 'ks-telegram'); ?></th>
+                        <td>
+                            <?php
+                            $ks_telegram_table_checkbox('channel_publish_posts', __('Posts', 'ks-telegram'), $settings);
+                            $ks_telegram_table_checkbox('channel_publish_pages', __('Pages', 'ks-telegram'), $settings);
+                            ?>
+                        </td>
+                    </tr>
+                </table>
+                <div class="ks-telegram-custom-post-types">
+                    <h3><?php echo esc_html__('Custom post types', 'ks-telegram'); ?></h3>
+                    <p class="description"><?php echo esc_html__('Public custom post types with an admin screen appear here automatically. New types remain off until selected.', 'ks-telegram'); ?></p>
+                    <?php if ([] === $custom_post_types) : ?>
+                        <p><?php echo esc_html__('No eligible custom post types found.', 'ks-telegram'); ?></p>
+                    <?php else : ?>
+                        <?php foreach ($custom_post_types as $custom_post_type) : ?>
+                            <label>
+                                <input type="checkbox" name="<?php echo esc_attr(\KonstantinSorokin\Telegram\Settings\SettingsRepository::OPTION_NAME . '[channel_publish_custom_types][]'); ?>" value="<?php echo esc_attr($custom_post_type->name); ?>" <?php checked(in_array($custom_post_type->name, $selected_custom_post_types, true)); ?>>
+                                <?php echo esc_html($custom_post_type->label); ?> <code><?php echo esc_html($custom_post_type->name); ?></code>
+                            </label><br>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                </div>
+                <p class="description"><?php echo esc_html__('Messages are queued after publication and sent by WordPress cron. Earlier publications and later edits are not sent again. Failed deliveries are retried up to three times.', 'ks-telegram'); ?></p>
             </section>
 
             <section id="ks-telegram-panel-plugins" class="ks-telegram-tabs__panel" role="tabpanel" aria-labelledby="ks-telegram-tab-plugins" data-ks-telegram-panel="plugins">

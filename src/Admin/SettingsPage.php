@@ -19,6 +19,7 @@ use KonstantinSorokin\Telegram\Bot\Formatter;
 use KonstantinSorokin\Telegram\Bot\ChatRegistry;
 use KonstantinSorokin\Telegram\Bot\MessageSender;
 use KonstantinSorokin\Telegram\Bot\TelegramApiClient;
+use KonstantinSorokin\Telegram\Publishing\ChannelPublisher;
 use KonstantinSorokin\Telegram\Settings\SettingsRepository;
 use KonstantinSorokin\Telegram\Support\DeliveryLog;
 
@@ -190,6 +191,8 @@ final readonly class SettingsPage {
         }
 
         $settings = $this->settings->all();
+        $custom_post_types = ChannelPublisher::availableCustomPostTypes();
+        $selected_custom_post_types = $this->settings->selectedCustomPostTypes();
         $notice   = $this->consumeNotice();
         $chat_id_helper_items = $this->chats->recent();
 

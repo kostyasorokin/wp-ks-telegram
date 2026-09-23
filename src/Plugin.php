@@ -29,6 +29,7 @@ use KonstantinSorokin\Telegram\Bot\WebhookController;
 use KonstantinSorokin\Telegram\Notifications\NotificationManager;
 use KonstantinSorokin\Telegram\Plugins\IntegrationManager;
 use KonstantinSorokin\Telegram\Plugins\WooCommerce\CustomerPhoneSync;
+use KonstantinSorokin\Telegram\Publishing\ChannelPublisher;
 use KonstantinSorokin\Telegram\Settings\SettingsRepository;
 use KonstantinSorokin\Telegram\Support\DeliveryLog;
 
@@ -104,6 +105,7 @@ final class Plugin {
         $profile_completion->boot();
         (new WebhookController($this->settings, $this->bot_api, $chat_registry))->boot();
         (new NotificationManager($this->settings, $this->sender))->boot();
+        (new ChannelPublisher($this->settings, $this->sender))->boot();
         (new IntegrationManager($this->settings, $this->sender))->boot();
 
         /**

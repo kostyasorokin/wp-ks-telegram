@@ -24,6 +24,7 @@ Issues and pull requests: https://github.com/kostyasorokin/wp-ks-telegram/issues
 - Silent notification and web preview controls.
 - Message header builder for date, time, message type hashtag, and site hashtag.
 - WordPress notifications for content, comments, users, security, media, updates, Site Health, and mail failures.
+- Optional public channel posts for newly published WordPress posts, pages, and selected public custom post types.
 - WooCommerce notifications for new orders, order status changes, add-to-cart events, and low stock alerts.
 - WooCommerce Telegram checkout field and Telegram phone copy to billing phone.
 - Contact Form 7 and Mailchimp for WordPress notification hooks.
@@ -48,7 +49,7 @@ Issues and pull requests: https://github.com/kostyasorokin/wp-ks-telegram/issues
 The settings page is split into native WordPress tabs:
 
 - **Settings**: bot token, default chat IDs, parse mode, Telegram Login, webhook, silent notifications, and general message controls.
-- **Notifications**: built-in WordPress notification events.
+- **Notifications**: built-in WordPress notification events and separate public channel publishing.
 - **Messages**: message content and WooCommerce message field controls.
 - **Plugins**: third-party plugin integrations such as Contact Form 7, Mailchimp, and WooCommerce.
 - **Tests**: test message sender and Chat ID helper.
@@ -64,6 +65,12 @@ For group or channel notifications, add the bot to the target chat first. To fin
 3. Copy the discovered ID into **Default chat IDs**.
 
 Telegram Bot API accepts numeric chat IDs and public channel usernames such as `@channelusername`. Negative IDs for groups, supergroups, and channels are normal.
+
+## Public Channel Publishing
+
+In **Settings > KS Telegram > Notifications**, enter one destination in **Channel ID or @username** and select the content types to publish. WordPress posts and pages are always available. Public, viewable custom post types with an admin screen (including KS News and KS Cases when active) are discovered automatically and remain off until selected. Existing KS News selections are retained during the update. Give the bot administrator permission to post in that channel. The default chat IDs used for private alerts are never used for public publishing.
+
+Only the first transition to `publish` queues a linked title without a link preview. Existing publications, later edits, revisions, autosaves, and password-protected posts are excluded. Turning off a content type or changing the channel before a queued message runs prevents delivery to the old destination. Delivery uses WordPress cron with up to three attempts and a per-post/per-channel sent marker. A working system cron calling `wp-cron.php` is recommended if delivery must be prompt even when the site has no visitors. If Telegram accepts a message but the response is lost, a retry can rarely produce a duplicate.
 
 ## Telegram Login
 
@@ -197,6 +204,7 @@ Useful commands:
 
 ```bash
 composer lint
+php tests/channel-publisher-smoke.php
 npm run build
 npm run build:assets
 npm run build:scss

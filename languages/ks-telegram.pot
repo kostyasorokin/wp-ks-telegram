@@ -2,7 +2,7 @@
 # This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: KS Telegram 1.0.0\n"
+"Project-Id-Version: KS Telegram 1.2.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/ks-telegram\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1826,4 +1826,56 @@ msgstr ""
 
 #: templates/auth/profile-completion.php:78
 msgid "Save and continue"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Publish to Telegram channel"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Send a linked title without a preview when selected content is published for the first time. This is separate from administrator notifications and never uses the default chat IDs."
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Channel ID or @username"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Enter exactly one channel. The bot must be a channel administrator with permission to post messages. Leave this empty to disable public publishing."
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "WordPress content"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Custom post types"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Public custom post types with an admin screen appear here automatically. New types remain off until selected."
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "No eligible custom post types found."
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Posts"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Pages"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "KS News"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "News"
+msgstr ""
+
+#: templates/admin/settings-page.php
+msgid "Messages are queued after publication and sent by WordPress cron. Earlier publications and later edits are not sent again. Failed deliveries are retried up to three times."
 msgstr ""
